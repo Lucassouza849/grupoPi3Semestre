@@ -40,7 +40,6 @@ public class UsuarioOficinaController {
     @PostMapping("/autenticar/{usuario}/{senha}")
     public UsuarioDto authenticateUsers(@PathVariable String usuario, @PathVariable String senha){
          UsuarioDto usuarioDto = null;
-
          for (UsuarioOficina u : listaUser){
              if (u.getUsuario().equals(usuario)){
                  if (u.getSenha().equals(senha)){
