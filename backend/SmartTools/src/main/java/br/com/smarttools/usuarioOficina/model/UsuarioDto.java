@@ -8,11 +8,11 @@ public class UsuarioDto {
     private Boolean autenticado;
 
     public UsuarioDto(UsuarioOficina usuarioOficina) {
-        this.usuario =  usuarioOficina.getUsuario();
+        this.usuario = usuarioOficina.getUsuario();
         this.autenticado = false;
     }
 
-    public UsuarioDto(){
+    public UsuarioDto() {
 
     }
 
