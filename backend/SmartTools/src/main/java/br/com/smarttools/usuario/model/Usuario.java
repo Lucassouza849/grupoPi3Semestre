@@ -3,6 +3,7 @@ package br.com.smarttools.usuario.model;
 import br.com.smarttools.oficina.model.Oficina;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Usuario {
@@ -12,15 +13,26 @@ public class Usuario {
     private String nomeUsuario;
     private String senhaUsuario;
     private String emailUsuario;
+    private Boolean autenticado;
+
     @OneToOne
     private Oficina oficina;
 
-    public Usuario(Integer id, String nomeUsuario, String senhaUsuario, String emailUsuario, Oficina oficina) {
+    public Usuario(Integer id, String nomeUsuario, String senhaUsuario, String emailUsuario, Oficina oficina, Boolean autenticado) {
         this.id = id;
         this.nomeUsuario = nomeUsuario;
         this.senhaUsuario = senhaUsuario;
         this.emailUsuario = emailUsuario;
         this.oficina = oficina;
+        this.autenticado = false;
+    }
+
+    public Boolean autenticar(String login, String senha) {
+        if (login.equals(this.nomeUsuario) && senha.equals(this.senhaUsuario)) {
+            this.autenticado = true;
+            return true;
+        }
+        return false;
     }
 
     public Usuario(){}

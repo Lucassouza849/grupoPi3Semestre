@@ -41,5 +41,16 @@ public class UsuarioController {
         return "Usuario deletado com sucesso!";
     }
 
+    @PostMapping("/{nomeUsuario}/{senha}")
+    public Usuario autenticarUsuario(@PathVariable String nomeUsuario, @PathVariable String senha ){
+
+        for (Usuario usuario : usuarioRepository.findAll()) {
+            if (usuario.autenticar(nomeUsuario, senha)) {
+                return usuario;
+            }
+        }
+        return null;
+    }
+
 
 }
