@@ -1,9 +1,10 @@
 package br.com.smarttools.financeiro.controller;
 
 
-import br.com.smarttools.financeiro.model.Entrada;
+
 import br.com.smarttools.financeiro.model.Extrato;
-import br.com.smarttools.financeiro.model.Saida;
+import br.com.smarttools.financeiro.repository.Faturavel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -13,28 +14,37 @@ import java.util.List;
 @RestController
 @RequestMapping("/extratos")
 public class ExtratoController {
-    private List<Extrato> listaExtrato = new ArrayList<>();
+
+    @Autowired
+    private Faturavel repository;
 
 
+    @PostMapping
+    public String postExtrato(@RequestBody Extrato novoExtrato) {
+        novoExtrato.setDataRegistro(LocalDateTime.now());
+        repository.save(novoExtrato);
+        return "Extrato Cadastrado";
+    }
 
     @GetMapping
-    public List<Extrato> getExtrato(){
-        return listaExtrato;
+    public List<Extrato> getExtrato() {
+        return repository.findAll();
     }
 
-    @PostMapping("/entradas")
-    public String criarEntrada(@RequestBody Entrada novoExtrato) {
-           novoExtrato.setData(LocalDateTime.now());
-           listaExtrato.add(novoExtrato);
-           return "operação criada com sucesso!";
+
+    @GetMapping("/{id}")
+    public Extrato getExtrato(@PathVariable int id) {
+        return repository.findById(id).get();
     }
 
-    @PostMapping("/saidas")
-    public String criarSaida(@RequestBody Saida novoRegistro) {
-        novoRegistro.setData(LocalDateTime.now());
-        listaExtrato.add(novoRegistro);
-        return "operação criada com sucesso!";
+
+    @DeleteMapping("/{id}")
+    public String deleteExtrato(@PathVariable int id) {
+        repository.deleteById(id);
+        return "Extrato Excluído";
+
     }
+
 
 }
 

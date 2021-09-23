@@ -1,5 +1,8 @@
 package br.com.smarttools.financeiro.repository;
 
-public interface Faturavel {
-    public Double getValorTotal();
+import br.com.smarttools.financeiro.model.Extrato;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface Faturavel extends JpaRepository<Extrato, Integer> {
+
 }
