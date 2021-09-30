@@ -1,9 +1,8 @@
 package br.com.smarttools.oficina.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import br.com.smarttools.usuario.model.Usuario;
+
+import javax.persistence.*;
 
 @Entity
 public class Oficina {
@@ -12,14 +11,25 @@ public class Oficina {
     private Integer id;
     private String nomeOficina;
     private String cnpjOficina;
+    @OneToOne
+    private Usuario usuario;
 
-    public Oficina(Integer id, String nomeOficina, String cnpjOficina) {
+    public Oficina(Integer id, String nomeOficina, String cnpjOficina, Usuario usuario) {
         this.id = id;
         this.nomeOficina = nomeOficina;
         this.cnpjOficina = cnpjOficina;
+        this.usuario = usuario;
     }
 
     public Oficina(){}
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
     public Integer getId() {
         return id;

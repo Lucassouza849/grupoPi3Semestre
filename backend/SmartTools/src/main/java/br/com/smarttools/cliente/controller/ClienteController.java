@@ -1,6 +1,7 @@
 package br.com.smarttools.cliente.controller;
 
 import br.com.smarttools.cliente.model.Cliente;
+import br.com.smarttools.cliente.repository.ClienteRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -13,33 +14,13 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
-    private List<Cliente> listaClientes;
 
-    public ClienteController() {
-        this.listaClientes = new ArrayList<>();
-    }
+
+    private ClienteRepository clienteRepository;
 
     @GetMapping
-    public List<Cliente> getClientes(){
-        listaClientes.stream()
-                .sorted(Comparator.comparing(Cliente :: getId))
-                .collect(Collectors.toList());
-        return listaClientes;
+    public List<Cliente> getClientes() {
+        return clienteRepository.findAll();
     }
-
-    @PostMapping
-    public String cadastrarClientes(@RequestBody Cliente novoCliente){
-        novoCliente.setId(ThreadLocalRandom.current().nextInt(0, 1000));
-        listaClientes.add(novoCliente);
-        return "cliente cadastrado com sucesso!";
-    }
-
-    @DeleteMapping("/{id}")
-    public String excluir(@PathVariable Integer id){
-        listaClientes.remove(listaClientes.stream()
-                .filter(listaClientes -> listaClientes.getId().equals(id))
-                .findFirst().get());
-        return "Cliente excluido do sistema com sucesso!";
-    }
-
 }
+

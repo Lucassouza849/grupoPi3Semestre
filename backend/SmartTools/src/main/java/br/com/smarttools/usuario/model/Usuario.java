@@ -15,15 +15,11 @@ public class Usuario {
     private String emailUsuario;
     private Boolean autenticado;
 
-    @OneToOne
-    private Oficina oficina;
-
-    public Usuario(Integer id, String nomeUsuario, String senhaUsuario, String emailUsuario, Oficina oficina, Boolean autenticado) {
+    public Usuario(Integer id, String nomeUsuario, String senhaUsuario, String emailUsuario, Boolean autenticado) {
         this.id = id;
         this.nomeUsuario = nomeUsuario;
         this.senhaUsuario = senhaUsuario;
         this.emailUsuario = emailUsuario;
-        this.oficina = oficina;
         this.autenticado = false;
     }
 
@@ -36,10 +32,6 @@ public class Usuario {
     }
 
     public Usuario(){}
-
-    public void setOficina(Oficina oficina) {
-        this.oficina = oficina;
-    }
 
     public Integer getId() {
         return id;
