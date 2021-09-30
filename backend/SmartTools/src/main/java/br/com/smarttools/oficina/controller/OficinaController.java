@@ -17,27 +17,45 @@ public class OficinaController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity criarOficina(@RequestBody Oficina novaOficina){
+    public ResponseEntity criarOficina(@RequestBody Oficina novaOficina) {
         oficinaRepository.save(novaOficina);
         return ResponseEntity.status(201).build();
     }
 
     @GetMapping
-    public List<Oficina> obterOficinas(){
-        return oficinaRepository.findAll();
+    public ResponseEntity obterOficinas() {
+        List<Oficina> oficinas = oficinaRepository.findAll();
+        if (oficinas.isEmpty()) {
+            return ResponseEntity.status(204).build();
+        } else {
+            return ResponseEntity.status(200).body(oficinas);
+        }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Oficina> buscar(@PathVariable int id){
-        return oficinaRepository.findById(id)
-                .map(ResponseEntity :: ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity buscar(@PathVariable int id) {
+        return ResponseEntity.of(oficinaRepository.findById(id));
     }
 
     @DeleteMapping("/{id}")
-    public String deletarOficina(@PathVariable int id){
-       oficinaRepository.deleteById(id);
-       return "Oficina Deletada com sucesso!";
+    public ResponseEntity deletarOficina(@PathVariable int id) {
+        if (oficinaRepository.existsById(id)) {
+            oficinaRepository.deleteById(id);
+            return ResponseEntity.status(200).build();
+        } else {
+            return ResponseEntity.status(404).build();
+        }
     }
 
+
+    @PutMapping("/{id}")
+    public ResponseEntity atualizarOficina(@PathVariable int id, @RequestBody Oficina oficinaAtualizada) {
+        if (oficinaRepository.existsById(id)) {
+            oficinaAtualizada.setId(id);
+            oficinaRepository.save(oficinaAtualizada);
+            return ResponseEntity.status(200).build();
+        } else {
+            return ResponseEntity.status(404).build();
+        }
+    }
 }

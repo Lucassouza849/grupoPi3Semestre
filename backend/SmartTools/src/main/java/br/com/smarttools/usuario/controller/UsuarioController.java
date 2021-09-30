@@ -24,12 +24,18 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public List<Usuario> obterUsuarios() {
-        return usuarioRepository.findAll();
+    public ResponseEntity obterUsuarios() {
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        if (usuarios.isEmpty()) {
+            return ResponseEntity.status(204).build();
+        } else {
+            return ResponseEntity.status(200).body(usuarios);
+        }
+
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> buscar(@PathVariable int id) {
+    public ResponseEntity buscar(@PathVariable int id) {
         return ResponseEntity.of(usuarioRepository.findById(id));
     }
 
@@ -45,12 +51,12 @@ public class UsuarioController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity putUsuario(@PathVariable int id,@RequestBody Usuario usuarioAtualizado){
-        if (usuarioRepository.existsById(id)){
+    public ResponseEntity putUsuario(@PathVariable int id, @RequestBody Usuario usuarioAtualizado) {
+        if (usuarioRepository.existsById(id)) {
             usuarioAtualizado.setId(id);
             usuarioRepository.save(usuarioAtualizado);
             return ResponseEntity.status(200).build();
-        }else {
+        } else {
             return ResponseEntity.status(404).build();
         }
     }
