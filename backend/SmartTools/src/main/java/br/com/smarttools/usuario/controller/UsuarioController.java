@@ -18,31 +18,46 @@ public class UsuarioController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String criarUsuario(@RequestBody Usuario novoUsuario){
+    public ResponseEntity criarUsuario(@RequestBody Usuario novoUsuario) {
         usuarioRepository.save(novoUsuario);
-        return "usuario criado com sucesso!";
+        return ResponseEntity.status(201).build();
     }
 
     @GetMapping
-    public List<Usuario> obterUsuarios(){
+    public List<Usuario> obterUsuarios() {
         return usuarioRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> buscar(@PathVariable int id){
-        return usuarioRepository.findById(id)
-                .map(ResponseEntity :: ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Usuario> buscar(@PathVariable int id) {
+        return ResponseEntity.of(usuarioRepository.findById(id));
     }
 
     @DeleteMapping("/{id}")
-    public String remover(@PathVariable int id){
-        usuarioRepository.deleteById(id);
-        return "Usuario deletado com sucesso!";
+    public ResponseEntity remover(@PathVariable int id) {
+        if (usuarioRepository.existsById(id)) {
+            usuarioRepository.deleteById(id);
+            return ResponseEntity.status(200).build();
+        } else {
+            return ResponseEntity.status(400).build();
+        }
     }
 
+
+    @PutMapping("/{id}")
+    public ResponseEntity putUsuario(@PathVariable int id,@RequestBody Usuario usuarioAtualizado){
+        if (usuarioRepository.existsById(id)){
+            usuarioAtualizado.setId(id);
+            usuarioRepository.save(usuarioAtualizado);
+            return ResponseEntity.status(200).build();
+        }else {
+            return ResponseEntity.status(404).build();
+        }
+    }
+
+
     @PostMapping("/{nomeUsuario}/{senha}")
-    public Usuario autenticarUsuario(@PathVariable String nomeUsuario, @PathVariable String senha ){
+    public Usuario autenticarUsuario(@PathVariable String nomeUsuario, @PathVariable String senha) {
 
         for (Usuario usuario : usuarioRepository.findAll()) {
             if (usuario.autenticar(nomeUsuario, senha)) {

@@ -17,9 +17,9 @@ public class OficinaController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String criarOficina(@RequestBody Oficina novaOficina){
+    public ResponseEntity criarOficina(@RequestBody Oficina novaOficina){
         oficinaRepository.save(novaOficina);
-        return "oficina criada com sucesso";
+        return ResponseEntity.status(201).build();
     }
 
     @GetMapping
