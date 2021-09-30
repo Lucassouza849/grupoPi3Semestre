@@ -5,6 +5,7 @@ package br.com.smarttools.financeiro.controller;
 import br.com.smarttools.financeiro.model.Extrato;
 import br.com.smarttools.financeiro.repository.Faturavel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -20,31 +21,42 @@ public class ExtratoController {
 
 
     @PostMapping
-    public String postExtrato(@RequestBody Extrato novoExtrato) {
+    public ResponseEntity postExtrato(@RequestBody Extrato novoExtrato) {
         novoExtrato.setDataRegistro(LocalDateTime.now());
         repository.save(novoExtrato);
-        return "Extrato Cadastrado";
+         return ResponseEntity.status(201).build();
     }
-
+// List<Extrato>
     @GetMapping
-    public List<Extrato> getExtrato() {
-        return repository.findAll();
+    public ResponseEntity getExtrato() {
+        List<Extrato> extrato = repository.findAll();
+        if (extrato.isEmpty()) {
+            return ResponseEntity.status(204).build();
+        } else  {
+            return ResponseEntity.status(200).body(extrato);
+        }
     }
 
 
     @GetMapping("/{id}")
-    public Extrato getExtrato(@PathVariable int id) {
-        return repository.findById(id).get();
+    public ResponseEntity getExtrato(@PathVariable int id) {
+        return ResponseEntity.of(repository.findById(id));
     }
 
 
     @DeleteMapping("/{id}")
-    public String deleteExtrato(@PathVariable int id) {
-        repository.deleteById(id);
-        return "Extrato Excluído";
+    public ResponseEntity deleteExtrato(@PathVariable int id)  {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return ResponseEntity.status(200).build();
+        } else {
+            return ResponseEntity.status(404).build();
+        }
+    }
+
 
     }
 
 
-}
+
 
