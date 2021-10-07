@@ -1,10 +1,61 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
 body {
     margin: 0;
     padding: 0;
-    font-family: Poppins;
+    font-family: 'Poppins', sans-serif;
     background-color: #EBF0F3;
     
 }
+
+a {
+    border: none;
+}
+
+a.button-back {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    border: none;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0px;
+    display: flex;
+}
+
+li{
+    display: inline-block;
+    margin-top: 20px;
+    position: absolute;
+    top: 20%;
+    left: 45%;
+ 
+}
+
+.f{
+    margin-top: 20px;
+    padding: 0 0 0 10px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+ }
+
+ .g{
+    margin-top: 20px;
+    position: absolute;
+    top: 20%;
+    left: 36%;
+ }
+ li img  {
+     width: 48px;
+     height: 45px;
+    }
 
 .centro {
     position: absolute;
@@ -21,7 +72,7 @@ body {
 .centro h1 {
     text-align: center;
     padding: 0 0 20px 0;
-    font-weight: 600;
+    font-weight: 800;
     color: #ffffff;
 }
 
@@ -73,9 +124,14 @@ form .text_fild {
     border-radius: 40px;
     width: 150px;
     height: 50px;
+    border: none;
 }
 
 .pass-div .signup_link {
     padding-top: 20px;
+    text-align: center;
+}
+
+.acesso {
     text-align: center;
 }
