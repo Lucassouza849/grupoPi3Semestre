@@ -8,7 +8,10 @@
     --color-five: #000;
     --color-six:  #D96E17;
   }
-
+ 
+  body{
+    font-family: 'Poppins', sans-serif
+  }
   /*----------------------------------- header --------------------------------------*/
   header {
     position: absolute;
