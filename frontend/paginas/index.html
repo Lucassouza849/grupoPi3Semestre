@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartTools | O lugar onde a gestão é simples</title>
+    <link rel="shortcut icon" href="../assets/img/logo/logo-pg-white.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./styles.css">
     <link rel="stylesheet" href="../css/header-footer.css">
 </head>
+
 <body>
     <!-- nav bar -->
     <header>
@@ -31,20 +35,20 @@
 
     <!-- primeira section -->
     <section class="section-one">
-         <div class="container">
-             <div class="content-left">
-                 <div class="img">
-                     <img src="../assets/img/home/boneco-sentado-home.png" alt="">
-                 </div>
-                 <div class="botao">
-                     <button>Conheça mais sobre nossos planos</button>
-                 </div>
-             </div>
-             <div class="content-right">
-                 <h1>O Lugar onde a gestão é mais simples!</h1>
-                 <p>A liberdade e o controle que você precisava!</p>
-             </div>
-         </div>   
+        <div class="container">
+            <div class="content-left">
+                <div class="img">
+                    <img src="../assets/img/home/boneco-sentado-home.png" alt="">
+                </div>
+                <div class="botao">
+                    <button>Conheça mais sobre nossos planos</button>
+                </div>
+            </div>
+            <div class="content-right">
+                <h1>O Lugar onde a gestão é mais simples!</h1>
+                <p>A liberdade e o controle que você precisava!</p>
+            </div>
+        </div>
     </section>
     <!-- fim primeira section  -->
 
@@ -57,14 +61,14 @@
         <div id="itens-carrousel">
             <div id="item">
                 <div class="itens"><img src="./type.jpeg" alt=""></div>
-                <div class="itens"><img src="./cabra.jpg" alt=""></div>
-                <div class="itens"><img src="./gostosin.jpeg" alt=""></div>
-                <div class="itens"><img src="./primo.jpeg" alt=""></div>    
+                <div class="itens"><img src="#" alt=""></div>
+                <div class="itens"><img src="#" alt=""></div>
+                <div class="itens"><img src="#" alt=""></div>
             </div>
         </div>
         <div class="linha"></div>
     </div>
-    
+
     <!-- fim carrousel -->
 
     <!-- mapa -->
@@ -78,19 +82,66 @@
             </div>
         </div>
     </div>
-    
-    
-    
-    
-    
+    <!--  -->
 
+    <!-- footer -->
+    <footer>
+        <div class="container">
+
+            <div class="container-coluna1">
+                <div class="coluna">
+                    <img src="../assets/img/heander e footer/localizacao-footer.png" alt="">
+                    <p>Rua Haddock Lobo, 595 São Paulo SP</p>
+                </div>
+                
+                <div class="coluna">
+                    <img src="../assets/img/heander e footer/telefone-footer.png" alt="">
+                    <p>contato@smarttools.com.br</p>
+                </div>
+                
+                <div class="coluna">
+                    <img src="../assets/img/heander e footer/email-footer.png" alt="">
+                    <p>(11) 2543 - 3434</p>
+                </div>
+            </div>
+
+            <div class="container-coluna2">
+                <div class="coluna2">
+                    <p>Siga nossas redes sociais</p>
+                    <img src="../assets/img/heander e footer/facebook-footer.png" alt="">
+                    <img src="../assets/img/heander e footer/instagram-footer.png" alt="">
+                    <img src="../assets/img/heander e footer/linkedin-footer.png" alt="">
+                </div>
+            </div>
+
+            <div class="container-coluna3">
+                <div class="coluna3">
+                    <img src="../assets/img/logo/logo.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="container-footer">
+            <div class="footer">
+                 <div class="copyright">
+                     © 2021  Site desenvolvidos por Alunos Bandtec | <a href="#">Smart Tools</a>
+                 </div>
+
+                 <div class="information">
+                     <a href="#">Mais Informações</a> | <a href="#">Politica de privacidade</a> | <a href="#">Termos e condições</a>
+                 </div>
+             </div>
+
+         </div>
+    </footer>
+    <!--  -->
 </body>
+
 </html>
 <script>
     document.querySelector("#item").addEventListener("wheel", event => {
-        if(event.deltaY > 0){
+        if (event.deltaY > 0) {
             event.target.scrollBy(400, 0)
-        }else{
+        } else {
             event.target.scrollBy(-300, 0)
         }
     })

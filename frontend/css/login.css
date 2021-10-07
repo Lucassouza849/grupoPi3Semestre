@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Poppins;
+    background-color: #EBF0F3;
+    
+}
+
+.centro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 340px;
+    height: 400px;
+    background-color: #126E82;
+    border-radius: 40px;
+
+}
+
+.centro h1 {
+    text-align: center;
+    padding: 0 0 20px 0;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.centro form {
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+form .text_fild {
+    position: relative;
+    margin: 30px 0;
+    background-color: #ffffff;
+    color:#C4C4C4;
+    border-radius: 40px;
+}
+
+.text_fild input {
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.text_fild  label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #adadad;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+}
+
+.pass-div {
+    position: relative;
+    margin: 0 0 20px 0;
+}
+
+.pass-div input {
+    position: relative;
+    left: 20%;
+    top: 70%;
+    color: #ffffff;
+    font-weight: 800;
+    background-color:#D96E17;
+    border-radius: 40px;
+    width: 150px;
+    height: 50px;
+}
+
+.pass-div .signup_link {
+    padding-top: 20px;
+    text-align: center;
+}
