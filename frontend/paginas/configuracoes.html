@@ -15,39 +15,73 @@
     <div class="topo"></div>
 
     <div class="container-config">
-        <div class="imagem">
-            <p>Trocar imagem</p>
-            <img src="" alt="">
+        <div class="max-width">
+            <div class="imageContainer">
+                <img src="../assets/img/configuracoes/camera.png" alt="Selecione uma imagem" id="imgPhoto">
+            </div>
         </div>
+    
+        <input type="file" id="flImage" name="fImage" accept="image/*">
 
         <div class="nome">
             <p>Atualizar nome do usuário</p>
-            <input type="text">
+            <input type="text" required>
         </div>
 
         <div class="email">
             <p>Atualizar email</p>
-            <input type="email">
+            <input type="email" required>
         </div>
 
         <div class="oficina">
             <p>Atualizar nome da Oficina</p>
-            <input type="text">
+            <input type="text" required>
         </div>
 
         <div class="cnpj">
             <p>Atualizar CNPJ</p>
-            <input type="number">
+            <input type="number" required>
         </div>
 
-        <div class="sujestao">
-            <p>Ajude-nos a melhorar! Conte um pouco sobre sua experiencia com a SmarTools</p>
-            <input type="text">
+        <div class="campo">
+            <br>
+            <label for="experiencia">
+                <p>Ajude-nos a melhorar! Conte um pouco sobre sua experiencia com a SmarTools!</p>
+            </label>
+            <textarea rows="6" style="width: 26em" id="experiencia" name="experiencia" required>
+        </textarea>
         </div>
 
-        <button>SALVAR</button>
+        <button class="botao" type="submit" onsubmit="">Concluído</button>
     </div>
+
+
 
 </body>
 
 </html>
+<script>
+    'use strict'
+
+let photo = document.getElementById('imgPhoto');
+let file = document.getElementById('flImage');
+
+photo.addEventListener('click', () => {
+    file.click();
+});
+
+file.addEventListener('change', () => {
+
+    if (file.files.length <= 0) {
+        return;
+    }
+
+    let reader = new FileReader();
+
+    reader.onload = () => {
+        photo.src = reader.result;
+    }
+
+    reader.readAsDataURL(file.files[0]);
+});
+</script>
