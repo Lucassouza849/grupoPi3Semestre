@@ -14,12 +14,11 @@ a {
     border: none;
 }
 
-a.button-back {
-    width: 35px;
-    height: 35px;
+
+.button-back {
+    position: absolute;
     top: 10%;
-    left: 40%;
-    border: none;
+    left: 10%;
 }
 
 ul {
@@ -71,6 +70,11 @@ form .text_fild {
     outline: none;
 }
 
+.text_fild input:focus{
+    background-color: #C4C4C4;
+    border-radius:40px;
+}
+
 .text_fild i {
     position: absolute;
     color: #000000;
@@ -99,6 +103,7 @@ form .text_fild {
 }
 
 .pass-div input {
+    cursor: pointer;
     position: relative;
     font-size: large;
     left: 24%;
@@ -120,6 +125,6 @@ form .text_fild {
 
 .aa{
     text-decoration: none;
-    color: black;
+    color: white;
     font-weight: bold;
 }

@@ -1,6 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 
+
 body {
     margin: 0;
     padding: 0;
@@ -13,13 +14,11 @@ a {
     border: none;
 }
 
-a.button-back {
-    width: 35px;
-    height: 35px;
+
+.button-back {
     position: absolute;
     top: 10%;
     left: 10%;
-    border: none;
 }
 
 ul {
@@ -28,34 +27,6 @@ ul {
     padding: 0px;
     display: flex;
 }
-
-li{
-    display: inline-block;
-    margin-top: 20px;
-    position: absolute;
-    top: 20%;
-    left: 45%;
- 
-}
-
-.f{
-    margin-top: 20px;
-    padding: 0 0 0 10px;
-    position: absolute;
-    top: 20%;
-    left: 50%;
- }
-
- .g{
-    margin-top: 20px;
-    position: absolute;
-    top: 20%;
-    left: 36%;
- }
- li img  {
-     width: 48px;
-     height: 45px;
-    }
 
 .centro {
     position: absolute;
@@ -72,7 +43,7 @@ li{
 .centro h1 {
     text-align: center;
     padding: 0 0 20px 0;
-    font-weight: 800;
+    font-weight: bold;
     color: #ffffff;
 }
 
@@ -99,7 +70,24 @@ form .text_fild {
     outline: none;
 }
 
+.text_fild input:focus{
+    background-color: #C4C4C4;
+    border-radius:40px;
+}
+
+.text_fild i {
+    position: absolute;
+    color: #000000;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.text_fild input{
+    text-indent: 25px;
+}
+
 .text_fild  label {
+    
     position: absolute;
     top: 50%;
     left: 5px;
@@ -115,8 +103,10 @@ form .text_fild {
 }
 
 .pass-div input {
+    cursor: pointer;
     position: relative;
-    left: 20%;
+    font-size: large;
+    left: 22%;
     top: 70%;
     color: #ffffff;
     font-weight: 800;
@@ -128,10 +118,13 @@ form .text_fild {
 }
 
 .pass-div .signup_link {
-    padding-top: 20px;
+    padding-top: 10px;
     text-align: center;
 }
 
-.acesso {
-    text-align: center;
+
+.aa{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
 }
