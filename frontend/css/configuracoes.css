@@ -7,13 +7,17 @@
     --color-four: #132C33;
     --color-five: #000;
     --color-six:  #D96E17;
-    --color-seven:  #daa67d;
   }
 body{
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
     font-size: 18px;
+}
+.externa{
+    position: relative;
+    width:100%;
+    height:200px;
 }
 .topo{
     background-color: var(--color-four);
@@ -27,9 +31,14 @@ body{
     display: grid;
     justify-content: center;
     align-items: center;
-    width: 30%;
     text-align: center;
-    padding: 5%;
+    left:50%;
+    top:50%;
+    margin-left:-100px; /* Metade do valor da Largura */
+    margin-top:-50px; /* Metade da valor da Altura */
+    position:absolute;
+    width:200px; /* Valor da Largura */
+    height:100px;
 }
 input{
     font-size: 18px;
@@ -38,20 +47,27 @@ input{
     border-radius: 4px;
     font-family: 'Poppins', sans-serif;
 }
+p{
+    text-align: left;
+}
 input[type='file'] {
     display: none;
 }
 
 .max-width {
-    max-width: 400px;
+    max-width: 500px;
     width: 100%;
+    display: flex;
 }
-
+h4{
+    margin: 40% 10% 0% 0%;
+    text-align: left;
+}
 #imgPhoto {
-    margin-top: 10%;
-    width: 250px;
-    height: 250px;
-    padding:10px;
+    margin-top: 25%;
+    width: 200px;
+    height: 200px;
+    padding: 10px;
     background-color: #eee;
     border: 5px solid #ccc;
     border-radius: 50%;
@@ -77,6 +93,7 @@ input[type='file'] {
 }
 .campo {
     margin-bottom: 1em;
+    text-align: center;
 }
 .campo label {
     margin-bottom: 0.2em;
@@ -89,20 +106,27 @@ fieldset.grupo .campo {
 .campo select option {
     padding-right: 1em;
 }
-.campo input:focus, .campo select:focus, .campo textarea:focus {
-    background: var(--color-one);
+
+textarea {
+    width: 30em;
+    border: 2px solid var(--color-six);
+}
+.box-botao{
+    align-items: center;
 }
 .botao {
     font-size: 1.2em;
-    background: var(--color-six);
+    background: var(--color-four);
     border: 0;
     margin-bottom: 1em;
     color: var(--color-one);
     box-shadow: 2px 2px 2px rgb(0 0 0 / 20%);
+    border-radius: 15px;
+    width: 50%;
 }
 .botao:hover {
-    background: var(--color-seven);
-    color: var(--color-five);
+    background: var(--color-three);
+    color: var(--color-one);
     box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.356);
     text-shadow: none;
 }
