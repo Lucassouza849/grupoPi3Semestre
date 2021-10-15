@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class Oficina {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
     private String nomeOficina;
     private String cnpjOficina;
     @OneToOne
