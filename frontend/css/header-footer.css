@@ -2,7 +2,7 @@
 
 :root {
     --color-one: #D8E3E7;
-    --color-two: #51C4D3;
+    --color-two: hsl(187, 60%, 57%);
     --color-three: #126E82;
     --color-four: #132C33;
     --color-five: #000;
@@ -80,7 +80,6 @@
  /*----------------------------------- footer --------------------------------------*/
 
  footer {
-    position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
