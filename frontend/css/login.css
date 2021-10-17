@@ -14,6 +14,9 @@ a {
     border: none;
 }
 
+.container-login{
+    padding: 20%;
+}
 
 .button-back {
     position: absolute;
@@ -37,7 +40,6 @@ ul {
     height: 400px;
     background-color: #126E82;
     border-radius: 40px;
-
 }
 
 .centro h1 {

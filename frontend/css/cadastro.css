@@ -14,8 +14,11 @@ a {
     border: none;
 }
 
+.container-cadastro{
+    padding: 20%;
+}
 
-.button-back {
+.button-back{
     position: absolute;
     top: 10%;
     left: 10%;
