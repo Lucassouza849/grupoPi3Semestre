@@ -24,6 +24,10 @@ a {
     left: 10%;
 }
 
+.button-back img{
+    width: 100px;
+}
+
 ul {
     list-style: none;
     margin: 0;

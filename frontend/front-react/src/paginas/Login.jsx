@@ -14,7 +14,7 @@ function Login(){
         <div class="button-back">
             <a href="">
                 <Link to="/">
-                <img width="100px" src={loginImg} alt="return" />
+                <img src={loginImg} alt="return" />
                 </Link>
             </a>
         </div>
