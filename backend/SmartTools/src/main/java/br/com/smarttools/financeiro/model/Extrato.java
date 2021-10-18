@@ -48,9 +48,7 @@ public class Extrato  {
         this.despesas = despesas;
     }
 
-    public Double getReceitas() {
-        return receitas;
-    }
+    public Double getReceitas() {return receitas;}
 
     public void setReceitas(Double receitas) {
         this.receitas = receitas;
