@@ -1,0 +1,292 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+.section{
+    margin-top: 200px;
+    margin-bottom: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.section-two{
+    margin-top: 200px;
+    margin-bottom: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.container{
+    width: 80%;
+    display: flex;
+   
+    
+}
+
+.texto-h2{
+    color: #126E82;
+    text-transform: uppercase;
+    width: 50%;
+    margin-top: 100px;
+    /* margin-right: 70px;  */
+    font-size: 35px;
+    font-family: 'Poppins';
+    font-weight: 300;
+}
+.section-linha{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.linha{
+    width: 90%;
+    border: 1px orange solid;
+    margin-bottom: 0px;
+}
+
+.button{
+    background-color: #f6c74d;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-weight: 500;
+    width: 30%;
+    height: 40px;
+    border-radius: 5px;
+    border: #f6c74d;
+ 
+}
+
+ .img-anotacao{
+    width: 50%;
+    
+ }
+
+ .texto-anotacao h2{
+    color: #126E82;
+    text-transform: uppercase;
+    font-size: 35px;
+    margin-left: 100px;
+    font-weight: 1000;
+
+ }
+
+ .texto-anotacao p{
+     margin-top: 90px;
+     font-size: 25px;
+     margin-left: 100px;
+   
+ }
+
+ .pipe-quemSomos{
+    width: 3px;
+    height: 300px;
+    background-color: #D96E17;
+    margin-left: 40px;
+
+ }
+
+
+ 
+ .mensagem{   
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+.content1{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    flex-direction: column;
+}
+
+.content2{
+    width: 30%;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    flex-direction: column;
+}
+
+.mensagem .content1 h2{
+    color:#126E82;
+    font-size: 36px;
+    text-align: right;
+}
+
+.mensagem .content2 h2{
+    color:#126E82;
+    font-size: 36px;
+    text-align: left;
+}
+
+.mensagem .content1 p {
+    margin-top: 40px;
+    font-size: 20px;
+    text-align: right;
+}
+
+.mensagem .content2 p {
+    margin-top: 40px;
+    font-size: 20px;
+    text-align: left;
+}
+
+.container-box{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+
+}
+
+.section-box{
+    margin-top: 200px;
+    margin-bottom: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.imag-box{
+
+    display: flex;
+    justify-content: center;      
+}
+
+.content-img{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.content-img img{
+
+    margin-bottom: 20px;
+}
+
+
+
+.section-time{
+    margin-top: 80px;
+    width: 80%;
+    margin-bottom: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-time h1{
+    margin-left: 238px;
+    font-size: 50px;
+    text-transform: uppercase;
+    color: #126E82;
+}
+
+.container-time{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #D96E17;
+}
+
+.container-time .time{
+    display: flex;
+    justify-content: center;
+    width:100%;
+
+}
+
+
+.time .integrante1 img{
+
+    width: 350px;
+    /* margin-top: 200px; */
+}
+
+.time .integrante1 p{
+    margin-top: -10px;
+    margin-bottom: 70px;
+    font-weight: 700;
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+.time .integrante2{
+    margin-left: 70px;
+}
+
+.time .integrante2 p{
+    margin-bottom: 300px;
+    font-weight: 700;
+    font-size: 20px;
+
+    
+}
+
+.time .integrante2 img{
+    width: 350px;
+    /* margin-bottom: 200px; */
+}
+
+.time{
+    width: 100%;
+    margin-left: 150px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.time .integrante1 {
+    flex-direction: column;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.time .integrante2 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+
+
+.time .integrante5 p{
+    font-weight: 700;
+    font-size: 20px;
+
+    
+}
+
+.time .integrante5 img{
+    width: 350px;
+    /* margin-bottom: 200px; */
+}
+
+.time .integrante5 {
+    margin-top: -60px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: 360px;
+}
