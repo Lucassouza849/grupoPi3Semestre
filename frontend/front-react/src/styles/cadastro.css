@@ -24,6 +24,10 @@ a {
     left: 10%;
 }
 
+.button-back img{
+    width: 100px;
+}
+
 ul {
     list-style: none;
     margin: 0;
@@ -37,7 +41,7 @@ ul {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 370px;
-    height: 450px;
+    height: 450px !important;
     background-color: #126E82;
     border-radius: 40px;
 

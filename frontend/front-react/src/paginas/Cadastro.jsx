@@ -12,7 +12,7 @@ function Cadastro(){
         <div class="button-back">
             <a href="">
                 <Link to="/">
-                <img width="100px" src={setaBack} alt="return" />
+                <img src={setaBack} alt="return" />
                 </Link>
             </a>
         </div>

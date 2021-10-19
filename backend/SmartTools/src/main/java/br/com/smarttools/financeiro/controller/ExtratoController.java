@@ -7,6 +7,7 @@ import br.com.smarttools.financeiro.repository.Faturavel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.Iterator;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,13 +28,36 @@ public class ExtratoController {
          return ResponseEntity.status(201).build();
     }
 // List<Extrato>
-    @GetMapping
-    public ResponseEntity getExtrato() {
+@GetMapping
+public ResponseEntity getExtrato() {
+
+    List<Extrato> extrato = repository.findAll();
+    Iterator<Extrato> it = extrato.iterator();
+
+    Extrato ext = new Extrato();
+
+    if (extrato.isEmpty()) {
+        return ResponseEntity.status(204).build();
+    } else {
+        return ResponseEntity.status(200).body(extrato);
+
+    }
+}
+
+    @GetMapping("/ultimoExtrato")
+    public ResponseEntity getUltimoExtrato() {
+
         List<Extrato> extrato = repository.findAll();
+        Iterator<Extrato> it = extrato.iterator();
+
+        Extrato ext = new Extrato();
+
         if (extrato.isEmpty()) {
             return ResponseEntity.status(204).build();
-        } else  {
-            return ResponseEntity.status(200).body(extrato);
+        } else {
+            ext = it.next();
+            return ResponseEntity.status(200).body(ext);
+
         }
     }
 

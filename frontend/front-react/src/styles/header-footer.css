@@ -74,6 +74,8 @@
     border-width: medium;
     border-style: solid;
     margin-top: 0px;
+    width: 100px;
+    text-align: center;
     /* margin-bottom: 11px; */
  }
  .pipe{
