@@ -2,13 +2,13 @@ package br.com.smarttools.financeiro.controller;
 
 
 
-import br.com.smarttools.financeiro.model.Despesas;
+import br.com.smarttools.financeiro.model.Despesa;
 import br.com.smarttools.financeiro.model.Extrato;
 import br.com.smarttools.financeiro.model.Receita;
 import br.com.smarttools.financeiro.repository.FaturavelRepository;
 import br.com.smarttools.financeiro.repository.SaldoRepository;
 import br.com.smarttools.gerararquivo.Gravar;
-import br.com.smarttools.gerararquivo.Leitura;
+
 import br.com.smarttools.listaObj.ListaObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +36,7 @@ public class ExtratoController {
     }
 
     @PostMapping("/despesas")
-    public ResponseEntity adicionarDespesa(@RequestBody Despesas novaDespesa){
+    public ResponseEntity adicionarDespesa(@RequestBody Despesa novaDespesa){
             novaDespesa.setDataRegistro(LocalDateTime.now());
             faturavelRepository.save(novaDespesa);
             return ResponseEntity.status(201).build();
@@ -57,10 +57,9 @@ public class ExtratoController {
     @GetMapping("/csv")
     public ResponseEntity getCsv(){
         Gravar g = new Gravar();
-        Leitura l = new Leitura();
         ListaObj<Extrato> listaObj = new ListaObj<>((int) faturavelRepository.count());
         ListaObj<Receita> listaReceitas= new ListaObj<>((int) faturavelRepository.count());
-        ListaObj<Despesas> listaDespesas= new ListaObj<>((int) faturavelRepository.count());
+        ListaObj<Despesa> listaDespesas= new ListaObj<>((int) faturavelRepository.count());
         for(Extrato c : faturavelRepository.findAll()){
                 listaObj.adiciona(c);
         }
@@ -71,12 +70,11 @@ public class ExtratoController {
             }
         }
         for(Extrato e: faturavelRepository.findAll()){
-            if (e instanceof Despesas) {
-                listaDespesas.adiciona((Despesas) e);
+            if (e instanceof Despesa) {
+                listaDespesas.adiciona((Despesa) e);
             }
         }
-        g.gravaArquivoCsv(listaObj, listaDespesas, listaReceitas, "lucas");
-        l.leExibeArquivoCsv("lucas");
+        g.gravaArquivoCsv(listaObj, listaDespesas, listaReceitas, "relatorio");
         return ResponseEntity.status(204).build();
     }
 

@@ -15,6 +15,7 @@ public class Usuario {
     private String emailUsuario;
     private Boolean autenticado;
 
+
     public Usuario(Integer id, String nomeUsuario, String senhaUsuario, String emailUsuario, Boolean autenticado) {
         this.id = id;
         this.nomeUsuario = nomeUsuario;
@@ -23,13 +24,13 @@ public class Usuario {
         this.autenticado = false;
     }
 
-    public Boolean autenticar(String login, String senha) {
-        if (login.equals(this.nomeUsuario) && senha.equals(this.senhaUsuario)) {
-            this.autenticado = true;
-            return true;
-        }
-        return false;
-    }
+//    public Boolean autenticar(String login, String senha) {
+//        if (login.equals(this.nomeUsuario) && senha.equals(this.senhaUsuario)) {
+//            this.autenticado = true;
+//            return true;
+//        }
+//        return false;
+//    }
 
     public Usuario(){}
 
@@ -63,5 +64,13 @@ public class Usuario {
 
     public void setEmailUsuario(String emailUsuario) {
         this.emailUsuario = emailUsuario;
+    }
+
+    public Boolean getAutenticado() {
+        return autenticado;
+    }
+
+    public void setAutenticado(Boolean autenticado) {
+        this.autenticado = autenticado;
     }
 }

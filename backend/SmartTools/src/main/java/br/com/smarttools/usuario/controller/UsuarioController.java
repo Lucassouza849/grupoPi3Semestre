@@ -1,5 +1,8 @@
 package br.com.smarttools.usuario.controller;
 
+import br.com.smarttools.cadastroAutenticacao.Exception.InvalidLoginException;
+import br.com.smarttools.usuario.dto.UsuarioAutenticado;
+import br.com.smarttools.usuario.dto.UsuarioResposta;
 import br.com.smarttools.usuario.model.Usuario;
 import br.com.smarttools.usuario.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +19,9 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/cadastros")
     public ResponseEntity criarUsuario(@RequestBody Usuario novoUsuario) {
+        novoUsuario.setAutenticado(false);
         usuarioRepository.save(novoUsuario);
         return ResponseEntity.status(201).build();
     }
@@ -62,16 +65,22 @@ public class UsuarioController {
     }
 
 
-    @PostMapping("/{nomeUsuario}/{senha}")
-    public Usuario autenticarUsuario(@PathVariable String nomeUsuario, @PathVariable String senha) {
+    @PostMapping("/autenticacoes")
+    public ResponseEntity<UsuarioResposta> autenticarUsuario(@RequestBody UsuarioAutenticado usuarioAutenticado)  {
+           Usuario usuario = usuarioRepository.findByNomeUsuario(usuarioAutenticado.getLogin())
+                   .orElseThrow(RuntimeException::new);
+           if(usuarioAutenticado.getSenha().equals(usuario.getSenhaUsuario())){
+               usuario.setAutenticado(true);
+               UsuarioResposta usuarioResposta = new UsuarioResposta(usuario.getNomeUsuario(),
+               usuario.getEmailUsuario(), usuario.getAutenticado());
+               return ResponseEntity.status(200).body(usuarioResposta);
+           }else{
+               return ResponseEntity.status(204).build();
+           }
 
-        for (Usuario usuario : usuarioRepository.findAll()) {
-            if (usuario.autenticar(nomeUsuario, senha)) {
-                return usuario;
-            }
-        }
-        return null;
     }
+
+
 
 
 }

@@ -4,15 +4,15 @@ import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
 @Entity
-public class Despesas extends Extrato {
+public class Despesa extends Extrato {
     public Double saida;
 
-    public Despesas(Integer id, LocalDateTime dataRegistro, String descricao, String categoria, Double saida) {
+    public Despesa(Integer id, LocalDateTime dataRegistro, String descricao, String categoria, Double saida) {
         super(id, dataRegistro, descricao, categoria);
         this.saida = saida;
     }
 
-    public Despesas(){}
+    public Despesa(){}
 
     public Double getSaida() {
         return saida;

@@ -1,6 +1,6 @@
 package br.com.smarttools.gerararquivo;
 
-import br.com.smarttools.financeiro.model.Despesas;
+import br.com.smarttools.financeiro.model.Despesa;
 import br.com.smarttools.financeiro.model.Extrato;
 import br.com.smarttools.financeiro.model.Receita;
 import br.com.smarttools.listaObj.ListaObj;
@@ -11,7 +11,7 @@ import java.util.Formatter;
 import java.util.FormatterClosedException;
 
 public class Gravar {
-    public static void gravaArquivoCsv (ListaObj<Extrato> listaExtrato, ListaObj<Despesas> listaDespesas , ListaObj<Receita> listaReceitas, String nomeArq) {
+    public static void gravaArquivoCsv (ListaObj<Extrato> listaExtrato, ListaObj<Despesa> listaDespesas , ListaObj<Receita> listaReceitas, String nomeArq) {
         FileWriter arq = null;   // objeto que representa o arquivo para escrita
         Formatter saida = null;  // objeto que será usado para escrita no arquivo
         Boolean deuRuim = false;
@@ -36,7 +36,7 @@ public class Gravar {
                 // Obtenho um objeto dog da lista por vez (o do índice i)
                 Extrato e = listaExtrato.getElemento(i);
                 Receita r = listaReceitas.getElemento(i);
-                Despesas d = listaDespesas.getElemento(i);
+                Despesa d = listaDespesas.getElemento(i);
                 // Gravo os dados desse objeto no arquivo
                 // Separando cada campo por um ;
                 saida.format("%s;%s;%s;%d;%.2f;%d,%.2f\n", e.getDescricao(), e.getCategoria(), e.getDataRegistro(),
