@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 
 @Entity
-public  class Extrato implements ExtratoRepository {
+public class Extrato implements ExtratoRepository {
 
 
     @Id
