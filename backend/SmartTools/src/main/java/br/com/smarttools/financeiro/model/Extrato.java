@@ -1,7 +1,6 @@
 package br.com.smarttools.financeiro.model;
 
-import br.com.smarttools.financeiro.repository.Faturavel;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+import br.com.smarttools.financeiro.repository.ExtratoRepository;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,17 +10,31 @@ import java.time.LocalDateTime;
 
 
 @Entity
-public class Extrato  {
+public class Extrato implements ExtratoRepository {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private LocalDateTime dataRegistro;
-    private Double despesas;
-    private Double receitas;
+//    private Double despesas;
+//    private Double receitas;
     private String descricao;
     private String categoria;
+
+
+    public Extrato(Integer id, LocalDateTime dataRegistro, String descricao, String categoria) {
+        this.id = id;
+        this.dataRegistro = dataRegistro;
+        this.descricao = descricao;
+        this.categoria = categoria;
+    }
+
+    public Extrato() {
+
+    }
+
+
 
 
     public Integer getId() {
@@ -38,20 +51,6 @@ public class Extrato  {
 
     public void setDataRegistro(LocalDateTime dataRegistro) {
         this.dataRegistro = dataRegistro;
-    }
-
-    public Double getDespesas() {
-        return despesas;
-    }
-
-    public void setDespesas(Double despesas) {
-        this.despesas = despesas;
-    }
-
-    public Double getReceitas() {return receitas;}
-
-    public void setReceitas(Double receitas) {
-        this.receitas = receitas;
     }
 
     public String getDescricao() {
