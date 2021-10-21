@@ -11,7 +11,7 @@ function Planos(){
        <>
        <Header />
         <div class="arrow">
-            <a href="#" title="Back to Top"><span class="fas fa-angle-up"></span></a>
+            <a href="#" title="Back to Top"><span class="fas fa-angle-up">^</span></a>
         </div>
        
     

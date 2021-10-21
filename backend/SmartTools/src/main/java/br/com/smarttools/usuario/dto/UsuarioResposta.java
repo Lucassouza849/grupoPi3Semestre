@@ -3,12 +3,10 @@ package br.com.smarttools.usuario.dto;
 public class UsuarioResposta {
     private String nome;
     private String email;
-    private Boolean autenticado;
 
-    public UsuarioResposta(String nome, String email, Boolean autenticado) {
+    public UsuarioResposta(String nome, String email) {
         this.nome = nome;
         this.email = email;
-        this.autenticado = autenticado;
     }
 
     public  UsuarioResposta(String nomeUsuario, String emailUsuario, boolean autenticado){}
@@ -29,11 +27,5 @@ public class UsuarioResposta {
         this.email = email;
     }
 
-    public Boolean getAutenticado() {
-        return autenticado;
-    }
 
-    public void setAutenticado(Boolean autenticado) {
-        this.autenticado = autenticado;
-    }
 }

@@ -1,15 +1,15 @@
 import React from "react";
-import '../styles/quemSomos.css';
+import '../styles/about.css';
 import avatarQuemSomos from '../assets2/img/quem somos/boneco-pilha-de-moedas-quem-somos.png';
 import bonecoAnotando from "../assets2/img/quem somos/boneco-anotando-quem-somos.png";
 import card1 from '../assets2/img/quem somos/card1.jpeg';
 import card2 from '../assets2/img/quem somos/card2.jpeg';
 import card3 from '../assets2/img/quem somos/card3.jpeg';
-import pedro from '../assets2/img/quem somos/lucas.jpeg';
-import lucas from '../assets2/img/quem somos/bruna.jpeg';
-import vini from '../assets2/img/quem somos/pedro.jpeg';
-import nich from '../assets2/img/quem somos/cano.jpeg';
-import bruna from '../assets2/img/quem somos/nicholas.jpeg';
+import pedro from '../assets2/img/quem somos/pedro.png';
+import lucas from '../assets2/img/quem somos/lucas.png';
+import vini from '../assets2/img/quem somos/cano.png';
+import nich from '../assets2/img/quem somos/nicholas.png';
+import bruna from '../assets2/img/quem somos/bruna.png';
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 
@@ -17,21 +17,21 @@ function QuemSomos(){
     return(
         <>
         <Header />
-        <div class="arrow">
-            <a href="#" title="Back to Top"><span class="fas fa-angle-up"></span></a>
+        <div className="arrow">
+            <a href="#" title="Back to Top"><span className="fas fa-angle-up">^</span></a>
         </div>
   
 
 
-    <section class="section">
-        <div class="container">
-            <div class="texto-h2">
+    <section className="section-one">
+        <div className="container-one">
+            <div className="texto-h2">
                 <h2>Muito além de uma simples gestão</h2>
-                <button class="button">Como Assim ?</button>
+                <button className="button">Como Assim ?</button>
             </div>
 
 
-            <div class="img">
+            <div className="img-about">
                 <img src={avatarQuemSomos} alt="" />
             </div>
 
@@ -39,18 +39,18 @@ function QuemSomos(){
 
 
     </section>
-    <div class="section-linha">
-        <div class="linha"></div>
+    <div className="section-linha">
+        <div className="linha"></div>
     </div>
 
-    <section class="section">
-        <div class="container">
+    <section className="section-two">
+        <div className="container-two">
 
-            <div class="img-anotacao">
+            <div className="img-anotacao">
                 <img src={bonecoAnotando} alt="" />
             </div>
 
-            <div class="texto-anotacao">
+            <div className="texto-anotacao">
                 <h2>Quem quer resultado precisa de organização financeira!</h2>
                 <p>A primeira tarefa é analisar a essência da sua empresa, feito isso, estaremos pronto para colocar em
                     ordem de negócio.</p>
@@ -61,23 +61,23 @@ function QuemSomos(){
 
 
     </section>
-    <div class="section-linha">
-        <div class="linha"></div>
+    <div className="section-linha">
+        <div className="linha"></div>
     </div>
 
-    <section class="section">
+    <section className="section-three">
 
-        <div class="mensagem">
-            <div class="content1">
+        <div className="mensagem">
+            <div className="content1">
                 <h2>Nossa Proposta</h2>
                 <p>Empenhamos o bom funcionamento da sua gestão sem complicações diárias, e tudo completo</p>
             </div>
 
-            <div class="pipe-quemSomos">
+            <div className="pipe-quemSomos">
 
             </div>
 
-            <div class="content2">
+            <div className="content2">
                 <h2>Nosso método</h2>
                 <p>Empenhamos o bom funcionamento da sua gestão sem complicações diárias, e tudo completo</p>
             </div>
@@ -89,8 +89,8 @@ function QuemSomos(){
 
 
 
-    <div class="imag-box">
-        <div class="content-img">
+    <div className="imag-box">
+        <div className="content-img">
             <img src={card1} alt="" />
             <img src={card2} alt="" />
             <img src={card3} alt="" />
@@ -99,69 +99,46 @@ function QuemSomos(){
 
 
 
-    <div class="section-time">
+    <div className="section-time">
         <h1>Nosso Time</h1>
     </div>
 
-    <div class="container-time">
-        <div class="time">
+    <div className="container-time">
+        <div className="time">
 
-            <div class="integrante1">
-                <img src={lucas} alt="" />
+            <div className="integrante1">
                 <p>Lucas Souza</p>
+                <img src={lucas} alt="" />
             </div>
 
-            <div class="integrante2">
+            <div className="integrante2">
                 <p>Bruna Brito</p>
                 <img src={bruna} alt="" />
 
             </div>
 
-
-
-
-        </div>
-
-    </div>
-
-
-    <div class="container-time">
-        <div class="time">
-
-            <div class="integrante1">
-                <img src={pedro} alt="" />
+            <div className="integrante3">
                 <p>Pedro Gimenez</p>
+                <img src={pedro} alt="" />                
             </div>
 
-            <div class="integrante2">
+            <div className="integrante4">
                 <p>Vinicius cano</p>
                 <img src={vini} alt="" />
 
             </div>
 
-
-
-
-        </div>
-
-    </div>
-
-    <div class="container-time">
-        <div class="time">
-
-
-            <div class="integrante5">
+            <div className="integrante5">
                 <p>Nicholas Forte</p>
                 <img src={nich} alt="" />
 
             </div>
 
-
-
-
         </div>
 
     </div>
+
+
     <Footer />
     </>
     );

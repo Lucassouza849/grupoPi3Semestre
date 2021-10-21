@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
@@ -21,7 +22,6 @@ public class UsuarioController {
 
     @PostMapping("/cadastros")
     public ResponseEntity criarUsuario(@RequestBody Usuario novoUsuario) {
-        novoUsuario.setAutenticado(false);
         usuarioRepository.save(novoUsuario);
         return ResponseEntity.status(201).build();
     }
@@ -70,9 +70,8 @@ public class UsuarioController {
            Usuario usuario = usuarioRepository.findByNomeUsuario(usuarioAutenticado.getLogin())
                    .orElseThrow(RuntimeException::new);
            if(usuarioAutenticado.getSenha().equals(usuario.getSenhaUsuario())){
-               usuario.setAutenticado(true);
                UsuarioResposta usuarioResposta = new UsuarioResposta(usuario.getNomeUsuario(),
-               usuario.getEmailUsuario(), usuario.getAutenticado());
+               usuario.getEmailUsuario());
                return ResponseEntity.status(200).body(usuarioResposta);
            }else{
                return ResponseEntity.status(204).build();

@@ -48,7 +48,7 @@ function Footer(){
         <div class="container-footer">
             <div class="footer">
                 <div class="copyright">
-                    © 2021 Site desenvolvidos por Alunos Bandtec | <a href="#">Smart Tools</a>
+                    © 2021 Site desenvolvidos por Alunos Bandtec | <a href="">Smart Tools</a>
                 </div>
 
                 <div class="information">

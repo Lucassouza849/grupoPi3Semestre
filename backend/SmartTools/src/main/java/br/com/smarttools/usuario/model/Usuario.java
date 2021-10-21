@@ -13,15 +13,13 @@ public class Usuario {
     private String nomeUsuario;
     private String senhaUsuario;
     private String emailUsuario;
-    private Boolean autenticado;
 
 
-    public Usuario(Integer id, String nomeUsuario, String senhaUsuario, String emailUsuario, Boolean autenticado) {
+    public Usuario(Integer id, String nomeUsuario, String senhaUsuario, String emailUsuario) {
         this.id = id;
         this.nomeUsuario = nomeUsuario;
         this.senhaUsuario = senhaUsuario;
         this.emailUsuario = emailUsuario;
-        this.autenticado = false;
     }
 
 //    public Boolean autenticar(String login, String senha) {
@@ -66,11 +64,5 @@ public class Usuario {
         this.emailUsuario = emailUsuario;
     }
 
-    public Boolean getAutenticado() {
-        return autenticado;
-    }
 
-    public void setAutenticado(Boolean autenticado) {
-        this.autenticado = autenticado;
-    }
 }
