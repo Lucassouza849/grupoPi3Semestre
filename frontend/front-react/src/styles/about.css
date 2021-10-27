@@ -1,0 +1,253 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.section-one {
+    
+    margin-top: 8%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.container-one{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-left: 80px;
+}
+
+.container-one .texto-h2{
+    width: 50%;
+    
+}
+
+.texto-h2 h2{
+    font-size: 50px;
+    color: #126E82;
+    text-transform: uppercase;
+}
+
+.texto-h2 button{
+    margin-top: 60px;
+    background-color: #f6c74d;
+    font-size: 14px;
+    font-weight: 500;
+    width: 30%;
+    height: 40px;
+    border-radius: 5px;
+    border: #f6c74d;
+}
+
+
+.container-one .img{
+    width: 50%;
+}
+
+.img-about img{
+    margin-left: 180px;
+    width: 360px;
+    height: 600px;
+}
+
+.section-linha{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+.section-two{
+    margin-left: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-two{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    width: 80%;
+    height: 800px;
+}
+
+.container-two .img-anotacao{
+    width: 50%;
+}
+
+.img-anotacao img{
+    width: 70%;
+    height: 100%;
+}
+
+.container-two .texto-anotacao{
+    width: 80%;
+}
+
+.texto-anotacao h2{
+    color: #126E82;
+    text-transform: uppercase;
+    font-size: 35px;
+    
+    font-weight: 700;
+}
+
+
+.section-three{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.mensagem{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ .pipe-quemSomos{
+    width: 4px;
+    height: 300px;
+    background-color: #D96E17;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.content1 h2{
+    color: #126E82;
+    font-size: 36px;
+    text-align: right;
+}
+
+.content1 p{ 
+    margin-top: 40px;
+    font-size: 20px;
+    text-align: right;
+    margin-left: 80px;
+}
+
+
+.content2 h2{
+    color: #126E82;
+    font-size: 36px;
+    text-align: left;
+}
+
+.content2 p{ 
+    margin-top: 40px;
+    font-size: 20px;
+    text-align: left;
+}
+
+.imag-box{
+    margin-top: 6%;
+    width: 80%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 150px;
+}
+
+
+.imag-box img{
+    width: 100%;
+}
+
+.section-time{
+    margin-top: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-time h1{
+    color: #126E82;
+    text-transform: uppercase;
+    font-size: 30px;
+}
+
+.container-time{
+    margin-top: 5%;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.time{
+    width:90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 160px;
+    color: #D96E17;
+}
+
+.time .integrante1 img{
+    width: 200px;
+    height: 200px;
+}
+
+.time .integrante2 img{
+    width: 200px;
+    height: 200px;
+}
+
+.time .integrante3 img{
+    width: 200px;
+    height: 200px;
+}
+
+.time .integrante4 img{
+    width: 200px;
+    height: 200px;
+}
+
+.time .integrante5 img{
+    width: 200px;
+    height: 200px;
+}
+
+.time .integrante1 p{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.time .integrante2 p{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.time .integrante3 p{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.time .integrante4 p{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.time .integrante5 p{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+
+
+

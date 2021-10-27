@@ -1,0 +1,8 @@
+.header-dashboard{
+    width: 100%;
+    background-color: #132C33;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+}
+
