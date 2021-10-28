@@ -5,11 +5,11 @@ import bonecoAnotando from "../assets2/img/quem somos/boneco-anotando-quem-somos
 import card1 from '../assets2/img/quem somos/card1.jpeg';
 import card2 from '../assets2/img/quem somos/card2.jpeg';
 import card3 from '../assets2/img/quem somos/card3.jpeg';
-import pedro from '../assets2/img/quem somos/pedro.png';
-import lucas from '../assets2/img/quem somos/lucas.png';
-import vini from '../assets2/img/quem somos/cano.png';
-import nich from '../assets2/img/quem somos/nicholas.png';
-import bruna from '../assets2/img/quem somos/bruna.png';
+import pedro from '../assets2/img/quem somos/pedro.jpeg';
+import lucas from '../assets2/img/quem somos/lucas.jpeg';
+import vini from '../assets2/img/quem somos/cano.jpeg';
+import nich from '../assets2/img/quem somos/nicholas.jpeg';
+import bruna from '../assets2/img/quem somos/bruna.jpeg';
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 
