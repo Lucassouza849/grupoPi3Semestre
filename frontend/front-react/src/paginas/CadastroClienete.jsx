@@ -1,49 +1,43 @@
 import React from 'react';
-import '../styles/cadastroVeiculo.css'
 import Button from '../Components/Button/Button';
+import '../styles/cadastroCliente.css'
 
-function CadastroVeiculo() {
+function cadastroCliente() {
     return (
         <>
             <div className="header"></div>
 
             <div className="section">
                 <div className="container">
-                    <h1 className="titulo">Cadastro de Veículos</h1>
+                    <h1 className="titulo">Cadastro de Clientes</h1>
                     <div className="form">
                         <div className="input">
-                            <h3>Tipo de veículo</h3>
+                            <h3>Nome</h3>
                             <input type="text" />
                         </div>
                         <div className="input">
-                            <h3>Modelo de veículo</h3>
+                            <h3>Telefone</h3>
                             <input type="text" />
                         </div>
                     </div>
                     <div className="form">
                         <div className="input">
-                            <h3>Marca do veículo</h3>
+                            <h3>Email</h3>
                             <input type="text" />
                         </div>
                         <div className="input">
-                            <h3>Placa do veículo</h3>
-                            <input type="text" />
+                          <Button/>
                         </div>
                     </div>
-                    <div className="form">
-                        <div className="input">
-                            <h3>Cliente</h3>
-                            <input type="text" />
-                        </div>
-                        <div className="input">
-                           <Button/>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </>
 
     );
+
+
+
 }
 
-export default CadastroVeiculo;
+export default cadastroCliente;

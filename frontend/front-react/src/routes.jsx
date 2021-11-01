@@ -7,6 +7,7 @@ import Planos from './paginas/Planos';
 import QuemSomos from './paginas/QuemSomos';
 import Dashboard from './paginas/Dashboard';
 import CadastroVeiculo from './paginas/CadastroVeiculo';
+import cadastroCliente from "./paginas/CadastroClienete";
 
 function Routes(){
     return(
@@ -19,7 +20,7 @@ function Routes(){
                 <Route path="/login" exact component={Login} />
                 <Route path="/dashboard" exact component={Dashboard} />
                 <Route path="/veiculos" exact component={CadastroVeiculo} />
-                
+                <Route path="/clientes" exact component={cadastroCliente}/>
                 
 
 
