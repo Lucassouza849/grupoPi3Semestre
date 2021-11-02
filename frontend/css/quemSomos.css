@@ -1,81 +1,75 @@
-
-
 * body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    background-color: #9cb9c138;
 }
 
+:root {
+    --color-one: #D8E3E7;
+    --color-two: #51C4D3;
+    --color-three: #126E82;
+    --color-four: #132C33;
+    --color-five: #000;
+    --color-six:  #D96E17;
+    --color-seven: #c5c5c5;
+    --color-eight: #994e10;
+  }
 
 
 .section{
-    margin-top: 200px;
-    margin-bottom: 70px;
+    margin-bottom: 20px;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-
-.section-two{
-    margin-top: 200px;
-    margin-bottom: 70px;
-    width: 100%;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-}
-.container{
+.container-22{
     width: 80%;
     display: flex;
-   
-    
-}
-
-.texto-h2{
-    color: #126E82;
-    text-transform: uppercase;
-    width: 50%;
-    margin-top: 100px;
-    /* margin-right: 70px;  */
-    font-size: 35px;
-    font-family: 'Poppins';
-    font-weight: 300;
-}
-.section-linha{
-    display:flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    margin: 60px;
 }
 
+.texto-h1 h1{
+    width: 80%;
+    color: var(--color-three);
+    font-size: 45px;
+    font-weight: 600;
+}
 
 .linha{
     width: 90%;
-    border: 1px orange solid;
-    margin-bottom: 0px;
+    height: 2px;
+    background: var(--color-six);
+    margin: 50px;
 }
 
 .button{
-    background-color: #f6c74d;
-    font-family: 'Poppins';
+    background-color:  var(--color-six);
+
     font-size: 14px;
     font-weight: 500;
     width: 30%;
     height: 40px;
     border-radius: 5px;
-    border: #f6c74d;
+    border:  var(--color-six);
  
 }
+.img-anotacao{
+    justify-content: center;
+    align-items: center;
+}
 
- .img-anotacao{
-    width: 50%;
-    
+ .img-anotacao img{
+    width: 300px;
  }
 
  .texto-anotacao h2{
-    color: #126E82;
+    color: var(--color-three);
     text-transform: uppercase;
     font-size: 35px;
     margin-left: 100px;
@@ -83,23 +77,22 @@
 
  }
 
- .texto-anotacao p{
-     margin-top: 90px;
-     font-size: 25px;
-     margin-left: 100px;
-   
- }
+.texto-anotacao p{
+    margin-top: 90px;
+    margin-left: 100px;
+    font-size: 24px;
+    color: var(--color-five);
+    font-weight: 300;
+}
 
  .pipe-quemSomos{
     width: 3px;
     height: 300px;
-    background-color: #D96E17;
+    background-color:  var(--color-six);
     margin-left: 40px;
 
  }
 
-
- 
  .mensagem{   
     width: 80%;
     display: flex;
@@ -125,13 +118,13 @@
 }
 
 .mensagem .content1 h2{
-    color:#126E82;
+    color:var(--color-three);
     font-size: 36px;
     text-align: right;
 }
 
 .mensagem .content2 h2{
-    color:#126E82;
+    color:var(--color-three);
     font-size: 36px;
     text-align: left;
 }
@@ -201,7 +194,7 @@
 .section-time h1{
     text-align: center;
     text-transform: uppercase;
-    color: #126E82;
+    color: var(--color-three);
 }
 
 .container-time{
@@ -209,7 +202,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #D96E17;
+    color:  var(--color-six);
 }
 .container-time .time{
     display: flex;
@@ -248,13 +241,11 @@
     max-width:500px;
     margin-left:10px;
 }
-
 .time .integrante2 img{
 width:70%;
 margin:2%;
 vertical-align:top;
 }
-
 
 .time .integrante2 {
     display: flex;

@@ -1,19 +1,24 @@
-* {
+* body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    background-color: #9cb9c138;
 }
 
-:root{
-    --background-navbar: #126E82;
-    --background-botao: #D96E17;
-    --white: #FFF;
-    /* --background-pagina: #9CB9C1; */
-}
+:root {
+    --color-one: #D8E3E7;
+    --color-two: #51C4D3;
+    --color-three: #126E82;
+    --color-four: #132C33;
+    --color-five: #000;
+    --color-six:  #D96E17;
+    --color-seven: #c5c5c5;
+    --color-eight: #994e10;
+  }
 
 .section-one{
-    margin-top: 180px;
+    margin-top: 60px;
     margin-bottom: 70px;
     width: 100%;
     display: flex;
@@ -22,7 +27,6 @@
 }
 .container{
     width: 80%;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -33,37 +37,25 @@
 }
 
 .content-left img{
-    width: 70%;
-    height: 40%;
+    width: 55%;
+    height: 30%;
     text-align: center;
-}
-
-.content-left .botao button{
-    width: 90%;
-    height: 40px;
-    border-radius: 5px;
-    border: 3px #126E82 solid;
-    color: var(--background-navbar);
-    background-color: #9cb9c111;
-    font-size: 14px;
-    font-weight: 500;
 }
 
 .content-right{
     width: 50%;    
-
 }
 
 .content-right h1{
-    color: var(--background-navbar);
+    color: var(--color-three);
     font-size: 45px;
     font-weight: 600;
 }
 
 .content-right p{
     font-size: 24px;
-    font-weight: 100;
-    color: #000;
+    color: var(--color-five);
+    font-weight: 300;
 }
 
 .carrousel{
@@ -74,21 +66,16 @@
 }
 
 .carrousel h1{
-    color: var(--background-navbar);
+    color: var(--color-three);
     font-size: 48px;
     font-weight: 500;
 }
 
-.carrousel .linha{
+.linha{
     width: 90%;
-    border: 1px orange solid;
-    margin-bottom: 30px;
-}
-
-body{
-    background-color: #9cb9c138;
-    /* display: grid;
-    place-items: center; */
+    height: 1px;
+    background: var(--color-six);
+    margin: 70px;
 }
 
 #itens-carrousel{
@@ -96,7 +83,6 @@ body{
     margin-bottom: 60px;
     width: 60vw;
 }
-
 
 #item{
     display: flex;
@@ -138,7 +124,7 @@ img{
 }
 
 .container-mapa h1{
-    color: var(--background-navbar);
+    color: var(--color-three);
     font-size: 50px;
     text-align: center;
 }

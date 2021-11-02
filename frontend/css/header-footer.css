@@ -55,6 +55,15 @@
     padding: 0 25px;
     display: inline-block;
  }
+ .menu-ativo{
+    text-decoration: none;
+    color: var(--color-six);
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 19px;
+    padding: 0 25px;
+    display: inline-block;
+ }
  .menu::after {
     content: '';
     display: block;
