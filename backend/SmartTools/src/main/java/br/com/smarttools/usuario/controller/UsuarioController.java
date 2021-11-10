@@ -1,15 +1,15 @@
 package br.com.smarttools.usuario.controller;
 
-import br.com.smarttools.cadastroAutenticacao.Exception.InvalidLoginException;
 import br.com.smarttools.usuario.dto.UsuarioAutenticado;
 import br.com.smarttools.usuario.dto.UsuarioResposta;
 import br.com.smarttools.usuario.model.Usuario;
 import br.com.smarttools.usuario.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -20,12 +20,15 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    //cadastro do usuários
     @PostMapping("/cadastros")
     public ResponseEntity criarUsuario(@RequestBody Usuario novoUsuario) {
         usuarioRepository.save(novoUsuario);
         return ResponseEntity.status(201).build();
     }
 
+
+    //listando todos os usuários
     @GetMapping
     public ResponseEntity obterUsuarios() {
         List<Usuario> usuarios = usuarioRepository.findAll();
@@ -34,14 +37,16 @@ public class UsuarioController {
         } else {
             return ResponseEntity.status(200).body(usuarios);
         }
-
     }
 
+    //buscando usuário por id
     @GetMapping("/{id}")
     public ResponseEntity buscar(@PathVariable int id) {
         return ResponseEntity.of(usuarioRepository.findById(id));
     }
 
+
+    //excluindo usuário da base
     @DeleteMapping("/{id}")
     public ResponseEntity remover(@PathVariable int id) {
         if (usuarioRepository.existsById(id)) {
@@ -53,6 +58,7 @@ public class UsuarioController {
     }
 
 
+    //atualizando dados do usuário
     @PutMapping("/{id}")
     public ResponseEntity putUsuario(@PathVariable int id, @RequestBody Usuario usuarioAtualizado) {
         if (usuarioRepository.existsById(id)) {
@@ -65,21 +71,48 @@ public class UsuarioController {
     }
 
 
+    //autenticando o usuário
     @PostMapping("/autenticacoes")
-    public ResponseEntity<UsuarioResposta> autenticarUsuario(@RequestBody UsuarioAutenticado usuarioAutenticado)  {
-           Usuario usuario = usuarioRepository.findByNomeUsuario(usuarioAutenticado.getLogin())
-                   .orElseThrow(RuntimeException::new);
-           if(usuarioAutenticado.getSenha().equals(usuario.getSenhaUsuario())){
-               UsuarioResposta usuarioResposta = new UsuarioResposta(usuario.getNomeUsuario(),
-               usuario.getEmailUsuario());
-               return ResponseEntity.status(200).body(usuarioResposta);
-           }else{
-               return ResponseEntity.status(204).build();
-           }
+    public ResponseEntity<UsuarioResposta> autenticarUsuario(@RequestBody UsuarioAutenticado usuarioAutenticado) {
+        Usuario usuario = usuarioRepository.findByNomeUsuario(usuarioAutenticado.getLogin())
+                .orElseThrow(RuntimeException::new);
+        if (usuarioAutenticado.getSenha().equals(usuario.getSenhaUsuario())) {
+            UsuarioResposta usuarioResposta = new UsuarioResposta(usuario.getNomeUsuario(),
+                    usuario.getEmailUsuario());
+            return ResponseEntity.status(200).body(usuarioResposta);
+        } else {
+            return ResponseEntity.status(204).build();
+        }
 
     }
 
 
+    //atualizando imagem do usuario
+    @PatchMapping("/foto/{id}")
+    public ResponseEntity atualizarAvatar(@PathVariable Integer id,
+                                          @RequestParam MultipartFile foto) throws IOException {
+        if (id != null) {
+                Usuario usuario = usuarioRepository.findById(id).get();
+                byte[] novaFoto = foto.getBytes();
 
+                usuario.setFotoPerfil(novaFoto);
+                usuarioRepository.save(usuario);
+                return ResponseEntity.status(200).build();
+        }
+                return ResponseEntity.status(204).build();
+    }
+
+    //Obtendo a imagem do usuario
+    @GetMapping("/foto/{id}")
+    public ResponseEntity obtendoImagemUsuario(@PathVariable Integer id){
+        Usuario usuario = usuarioRepository.findById(id).get();
+
+        byte[] foto = usuario.getFotoPerfil();
+
+        return ResponseEntity
+                .status(200)
+                .header("content-type", "image/jpeg")
+                .body(foto);
+    }
 
 }
