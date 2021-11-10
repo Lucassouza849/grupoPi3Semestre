@@ -42,7 +42,6 @@ public class ExtratoController {
             return ResponseEntity.status(201).build();
     }
 
-
     @GetMapping
     public ResponseEntity todosEntradas(){
 

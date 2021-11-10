@@ -1,6 +1,8 @@
 package br.com.smarttools.usuario.model;
 
+import br.com.smarttools.financeiro.model.Extrato;
 import br.com.smarttools.oficina.model.Oficina;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,21 +16,13 @@ public class Usuario {
     private String senhaUsuario;
     private String emailUsuario;
 
+    @ManyToOne
+    private Extrato extrato;
 
-    public Usuario(Integer id, String nomeUsuario, String senhaUsuario, String emailUsuario) {
-        this.id = id;
-        this.nomeUsuario = nomeUsuario;
-        this.senhaUsuario = senhaUsuario;
-        this.emailUsuario = emailUsuario;
-    }
+    @JsonIgnore
+    @Column(length = 20_000_000)
+    private byte[] fotoPerfil;
 
-//    public Boolean autenticar(String login, String senha) {
-//        if (login.equals(this.nomeUsuario) && senha.equals(this.senhaUsuario)) {
-//            this.autenticado = true;
-//            return true;
-//        }
-//        return false;
-//    }
 
     public Usuario(){}
 
@@ -64,5 +58,19 @@ public class Usuario {
         this.emailUsuario = emailUsuario;
     }
 
+    public Extrato getExtrato() {
+        return extrato;
+    }
 
+    public void setExtrato(Extrato extrato) {
+        this.extrato = extrato;
+    }
+
+    public byte[] getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(byte[] fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
+    }
 }
