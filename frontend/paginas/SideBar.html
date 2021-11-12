@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="./sideBar.css">
+    <link rel="stylesheet" href="../css/sideBar.css">
+    <link rel="stylesheet" href="../css/popUp.css">
+    <script src="../script/popUp.js"></script>
     <title>SideBar</title>
 </head>
+
 <body>
 
-    <div class="sidebar" >
+    <div class="sidebar">
         <div class="logo_content">
             <div class="logo">
-        <img src="./logo 1.png" alt="">
+                <img src="../assets/img/logo/logo.png" alt="">
                 <div class="logo_name">SmartTools</div>
-            </div >
-            
-            <button onclick="changeText()"><i class='bx bx-menu' id="btn" ></i></button></i>
+            </div>
+
+            <button onclick="changeText()" class="bt_deco"><i class='bx bx-menu' id="btn"></i></button></i>
         </div>
         <ul class="nav_list">
-                <button class="btn_mais" id="">
-                    <i class='bx bx-plus' style="display: block;"><span id="btnTransacao"></span></i>
-                </button>
+            <button class="btn_mais" id="abrir">
+                <i class='bx bx-plus' style="display: block;"><span id="btnTransacao"></span></i>
+            </button>
             <li>
                 <a href="#">
-                    <i class='bx bx-bar-chart-alt' >
+                    <i class='bx bx-bar-chart-alt'>
                         <span class="links_name">DashBoard</span>
                     </i>
                 </a>
@@ -34,7 +38,7 @@
 
             <li>
                 <a href="#">
-                    <i class='bx bx-money' >
+                    <i class='bx bx-money'>
                         <span class="links_name">Extrato</span>
                     </i>
                 </a>
@@ -43,7 +47,7 @@
 
             <li>
                 <a href="#">
-                    <i class='bx bxs-car-mechanic' >
+                    <i class='bx bxs-car-mechanic'>
                         <span class="links_name">Veículos</span>
                     </i>
                 </a>
@@ -52,7 +56,7 @@
 
             <li>
                 <a href="#">
-                    <i class='bx bxs-user-detail' >
+                    <i class='bx bxs-user-detail'>
                         <span class="links_name">Cliente</span>
                     </i>
                 </a>
@@ -71,48 +75,61 @@
         <div class="profile_content">
             <div class="profile">
                 <div class="profile_details">
-                <img src="./nick-foto.jpg" alt="">
+                    <img src="../assets/img/home/pngwing 1.png" alt="">
                     <div class="name_job">
                         <div class="name">Nick</div>
                         <div class="name-job">Oficina Forte</div>
                     </div>
                 </div>
-                <i class='bx bx-log-out' id="log_out" ></i>
+                <i class='bx bx-log-out' id="log_out"></i>
             </div>
         </div>
     </div>
-    
-    <div class="home_content">
-        <div class="text">Home</div>
+
+    <div id="modal-side" class="modal-container">
+        <div class="modal">
+            <button class="fechar" id="fechar">X</button>
+            <h3 class="subtitulo">Cadastrar transação</h3>
+            <form action="">
+                <input class="input" type="text" name="" id="" placeholder="Descrição">
+                <input class="input" type="number" placeholder="R$ 00,00">
+
+                <input type="button" name="" id="" class="button" value="Salvar">
+            </form>
+        </div>
+        
     </div>
 
-    <script>
-
-        let btn = document.querySelector("#btn");
-        let sideBar = document.querySelector(".sidebar");
-        let plus = document.querySelector(".btn_mais");
-        
-        btn.onclick = function () {
-            sideBar.classList.toggle("active");
-        }
-
-        function changeText() {
-            if (document.getElementById("btnTransacao")) {
-
-                document.getElementById("btnTransacao").innerHTML = Date();          
-                document.getElementById("btnTransacao").id = "btnTransacao2";
-                btnTransacao2.innerHTML = 'Transação';
-
-            } else if (document.getElementById("btnTransacao2")) {
-
-                document.getElementById("btnTransacao2").innerHTML = Date();          
-                document.getElementById("btnTransacao2").id = "btnTransacao";
-                btnTransacao.innerHTML = '';
-                
-            }
-        }
-        
-    </script>
 
 </body>
+
 </html>
+
+<script>
+
+    let btn = document.querySelector("#btn");
+    let sideBar = document.querySelector(".sidebar");
+    let plus = document.querySelector(".btn_mais");
+
+    btn.onclick = function () {
+        sideBar.classList.toggle("active");
+    }
+
+    function changeText() {
+        if (document.getElementById("btnTransacao")) {
+
+            document.getElementById("btnTransacao").innerHTML = Date();
+            document.getElementById("btnTransacao").id = "btnTransacao2";
+            btnTransacao2.innerHTML = 'Transação';
+
+        } else if (document.getElementById("btnTransacao2")) {
+
+            document.getElementById("btnTransacao2").innerHTML = Date();
+            document.getElementById("btnTransacao2").id = "btnTransacao";
+            btnTransacao.innerHTML = '';
+
+        }
+    }
+
+
+</script>
