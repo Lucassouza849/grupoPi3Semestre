@@ -1,9 +1,8 @@
 package br.com.smarttools.veiculo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import br.com.smarttools.cliente.model.Cliente;
+
+import javax.persistence.*;
 
 @Entity
 public class Veiculo {
@@ -16,6 +15,11 @@ public class Veiculo {
     private String modeloVeiculo;
     private String tipoVeiculo;
     private String placaVeiculo;
+
+
+    @ManyToOne
+    private Cliente cliente;
+
 
     public Veiculo(Integer idVeiculo, String marcaVeiculo, String modeloVeiculo, String tipoVeiculo, String placaVeiculo) {
         this.idVeiculo = idVeiculo;
@@ -63,5 +67,13 @@ public class Veiculo {
 
     public void setPlacaVeiculo(String placaVeiculo) {
         this.placaVeiculo = placaVeiculo;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 }
