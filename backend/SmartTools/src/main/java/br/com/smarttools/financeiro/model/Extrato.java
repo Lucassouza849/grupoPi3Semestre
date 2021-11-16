@@ -17,17 +17,19 @@ public class Extrato implements ExtratoRepository {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private LocalDateTime dataRegistro;
+    private Double valorLancamento;
 //    private Double despesas;
 //    private Double receitas;
     private String descricao;
     private String categoria;
 
 
-    public Extrato(Integer id, LocalDateTime dataRegistro, String descricao, String categoria) {
+    public Extrato(Integer id, LocalDateTime dataRegistro, String descricao, String categoria, Double valorLancamento) {
         this.id = id;
         this.dataRegistro = dataRegistro;
         this.descricao = descricao;
         this.categoria = categoria;
+        this.valorLancamento = valorLancamento;
     }
 
     public Extrato() {
@@ -35,7 +37,9 @@ public class Extrato implements ExtratoRepository {
     }
 
 
+    public Double getValorLancamento() {return valorLancamento;}
 
+    public void setValorLancamento(Double valorLancamento) {this.valorLancamento = valorLancamento;}
 
     public Integer getId() {
         return id;
