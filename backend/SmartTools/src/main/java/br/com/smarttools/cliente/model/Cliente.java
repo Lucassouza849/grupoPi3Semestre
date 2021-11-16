@@ -2,7 +2,6 @@ package br.com.smarttools.cliente.model;
 
 import br.com.smarttools.financeiro.model.Extrato;
 import br.com.smarttools.veiculo.model.Veiculo;
-
 import javax.persistence.*;
 
 @Entity
@@ -69,5 +68,13 @@ public class Cliente {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Extrato getExtrato() {
+        return extrato;
+    }
+
+    public void setExtrato(Extrato extrato) {
+        this.extrato = extrato;
     }
 }

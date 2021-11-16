@@ -17,6 +17,12 @@ public class Usuario {
     private String emailUsuario;
 
 
+    public Usuario(String emailUsuario) {
+        this.emailUsuario = emailUsuario;
+    }
+
+
+
     @JsonIgnore
     @Column(length = 20_000_000)
     private byte[] fotoPerfil;
@@ -55,7 +61,6 @@ public class Usuario {
     public void setEmailUsuario(String emailUsuario) {
         this.emailUsuario = emailUsuario;
     }
-
 
     public byte[] getFotoPerfil() {
         return fotoPerfil;

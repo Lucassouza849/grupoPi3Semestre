@@ -68,4 +68,12 @@ public class Veiculo {
     public void setPlacaVeiculo(String placaVeiculo) {
         this.placaVeiculo = placaVeiculo;
     }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 }

@@ -71,4 +71,12 @@ public class Extrato implements ExtratoRepository {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+
+    public Oficina getOficina() {
+        return oficina;
+    }
+
+    public void setOficina(Oficina oficina) {
+        this.oficina = oficina;
+    }
 }

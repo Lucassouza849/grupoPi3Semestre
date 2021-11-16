@@ -55,4 +55,6 @@ public class Oficina {
     public void setCnpjOficina(String cnpjOficina) {
         this.cnpjOficina = cnpjOficina;
     }
+
+
 }
