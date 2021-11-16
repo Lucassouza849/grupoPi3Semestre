@@ -1,5 +1,6 @@
 package br.com.smarttools.cliente.model;
 
+import br.com.smarttools.financeiro.model.Extrato;
 import br.com.smarttools.veiculo.model.Veiculo;
 
 import javax.persistence.*;
@@ -16,7 +17,7 @@ public class Cliente {
 
 
     @ManyToOne
-    private Veiculo veiculo;
+    private Extrato extrato;
 
     public Cliente(Integer id, String nome, String telefone, String cpf, String email) {
         this.id = id;

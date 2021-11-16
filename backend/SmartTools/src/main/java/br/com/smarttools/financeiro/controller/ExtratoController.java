@@ -78,7 +78,18 @@ public class ExtratoController {
     }
 
 
+    //filtro data
+    @GetMapping("/por-data/{data}")
+    public  List<Extrato>getDataExtrato(@PathVariable LocalDateTime data){
+        return  faturavelRepository.findByData(data);
 
+    }
+
+    //filtro valor
+    @GetMapping("por-valor/{valor}")
+    public  List<Extrato> getValorExtrato(@PathVariable Double valor){
+        return  faturavelRepository.findByValor(valor);
+    }
 
 // List<Extrato>
 //@GetMapping

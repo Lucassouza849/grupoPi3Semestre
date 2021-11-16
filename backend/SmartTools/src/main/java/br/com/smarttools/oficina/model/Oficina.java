@@ -11,6 +11,7 @@ public class Oficina {
     private int id;
     private String nomeOficina;
     private String cnpjOficina;
+
     @OneToOne
     private Usuario usuario;
 

@@ -61,6 +61,17 @@ public class ClienteController {
         return ResponseEntity.noContent().build();
     }
 
+    //filtro nome
+    @GetMapping("por-nome/{nome}")
+    public  List<Cliente> getClientePorNome(@PathVariable String nome){
+        return clienteRepository.findByNome(nome);
+    }
+
+    //filtro telefone
+    @GetMapping("por-telefone/{telefone}")
+    public List<Cliente> getClientePorTelefone(@PathVariable String telefone){
+        return  clienteRepository.findByTelefone(telefone);
+    }
 
 }
 

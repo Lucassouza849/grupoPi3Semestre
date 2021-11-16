@@ -16,8 +16,6 @@ public class Usuario {
     private String senhaUsuario;
     private String emailUsuario;
 
-    @ManyToOne
-    private Extrato extrato;
 
     @JsonIgnore
     @Column(length = 20_000_000)
@@ -58,13 +56,6 @@ public class Usuario {
         this.emailUsuario = emailUsuario;
     }
 
-    public Extrato getExtrato() {
-        return extrato;
-    }
-
-    public void setExtrato(Extrato extrato) {
-        this.extrato = extrato;
-    }
 
     public byte[] getFotoPerfil() {
         return fotoPerfil;
