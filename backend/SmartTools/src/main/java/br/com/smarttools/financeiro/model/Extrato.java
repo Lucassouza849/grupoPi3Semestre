@@ -1,11 +1,9 @@
 package br.com.smarttools.financeiro.model;
 
 import br.com.smarttools.financeiro.repository.ExtratoRepository;
+import br.com.smarttools.oficina.model.Oficina;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 
@@ -21,6 +19,11 @@ public class Extrato implements ExtratoRepository {
 //    private Double receitas;
     private String descricao;
     private String categoria;
+
+    @ManyToOne
+    private Oficina oficina;
+    //private Receita receita;
+   // private Despesa despesa;
 
 
     public Extrato(Integer id, LocalDateTime dataRegistro, String descricao, String categoria) {
@@ -67,5 +70,13 @@ public class Extrato implements ExtratoRepository {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+
+    public Oficina getOficina() {
+        return oficina;
+    }
+
+    public void setOficina(Oficina oficina) {
+        this.oficina = oficina;
     }
 }

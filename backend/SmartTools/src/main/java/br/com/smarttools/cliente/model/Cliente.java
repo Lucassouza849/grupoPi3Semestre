@@ -1,9 +1,8 @@
 package br.com.smarttools.cliente.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import br.com.smarttools.financeiro.model.Extrato;
+import br.com.smarttools.veiculo.model.Veiculo;
+import javax.persistence.*;
 
 @Entity
 public class Cliente {
@@ -14,6 +13,10 @@ public class Cliente {
     private String telefone;
     private String cpf;
     private String email;
+
+
+    @ManyToOne
+    private Extrato extrato;
 
     public Cliente(Integer id, String nome, String telefone, String cpf, String email) {
         this.id = id;
@@ -65,5 +68,13 @@ public class Cliente {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Extrato getExtrato() {
+        return extrato;
+    }
+
+    public void setExtrato(Extrato extrato) {
+        this.extrato = extrato;
     }
 }

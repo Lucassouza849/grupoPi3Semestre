@@ -11,6 +11,7 @@ public class Oficina {
     private int id;
     private String nomeOficina;
     private String cnpjOficina;
+
     @OneToOne
     private Usuario usuario;
 
@@ -54,4 +55,6 @@ public class Oficina {
     public void setCnpjOficina(String cnpjOficina) {
         this.cnpjOficina = cnpjOficina;
     }
+
+
 }
