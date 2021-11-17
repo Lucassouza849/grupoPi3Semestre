@@ -1,6 +1,8 @@
 package br.com.smarttools.gerararquivo;
 
+import br.com.smarttools.financeiro.model.Despesa;
 import br.com.smarttools.financeiro.model.Extrato;
+import br.com.smarttools.financeiro.model.Receita;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -87,7 +89,9 @@ public class GravaLeArquivoTxt {
                         System.out.println("Quantidade de registros lidos incompatível com quantidade de registros gravados");
                     }
                 } else if (tipoRegistro.equals("02")) {
+
                     System.out.println("Eh um registro de corpo");
+                    
                     String curso = registro.substring(2, 7).trim();
                     String ra = registro.substring(7, 15);
                     String nome = registro.substring(15, 65).trim();

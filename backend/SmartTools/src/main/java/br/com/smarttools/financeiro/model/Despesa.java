@@ -7,9 +7,9 @@ import java.time.LocalDateTime;
 public class Despesa extends Extrato {
     public Double saida;
 
-    public Despesa(Integer id, LocalDateTime dataRegistro, String descricao, String categoria, Double saida) {
-        super(id, dataRegistro, descricao, categoria);
-        this.saida = saida;
+    public Despesa(Integer id, LocalDateTime dataRegistro, String descricao, String categoria, Double saida, Double valorLancamento) {
+        super(id, dataRegistro, descricao, categoria, valorLancamento);
+        this.saida = valorLancamento;
     }
 
     public Despesa(){}
