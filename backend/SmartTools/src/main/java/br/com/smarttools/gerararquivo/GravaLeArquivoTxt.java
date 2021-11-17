@@ -10,6 +10,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -89,17 +91,13 @@ public class GravaLeArquivoTxt {
                         System.out.println("Quantidade de registros lidos incompatível com quantidade de registros gravados");
                     }
                 } else if (tipoRegistro.equals("02")) {
-
                     System.out.println("Eh um registro de corpo");
-                    
-                    String curso = registro.substring(2, 7).trim();
-                    String ra = registro.substring(7, 15);
-                    String nome = registro.substring(15, 65).trim();
-                    String disciplina = registro.substring(65, 105).trim();
-                    Double media = Double.valueOf(registro.substring(105, 110).replace(',', '.'));
-                    int qtdFalta = Integer.valueOf(registro.substring(110, 113));
-                    Extrato e = new Extrato();
-                    //Aluno a = new Aluno(ra, nome, curso, disciplina, media, qtdFalta);
+                    String descricao = registro.substring(2,27).trim();
+                    Double valorLancamento = Double.valueOf(registro.substring(27, 36).replace(',', '.'));
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                    LocalDateTime dataHoraLancamento = LocalDateTime.parse((registro.substring(35,55)), formatter);
+                    String categoria = registro.substring(55, 70).trim();
+                    Extrato e = new Extrato(dataHoraLancamento, descricao, categoria, valorLancamento);
                     listaLida.add(e);
                     ++contaRegDados;
                 } else {

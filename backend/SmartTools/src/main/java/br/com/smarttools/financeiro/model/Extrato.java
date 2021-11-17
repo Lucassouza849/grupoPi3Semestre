@@ -27,8 +27,7 @@ public class Extrato implements ExtratoRepository {
    // private Despesa despesa;
 
 
-    public Extrato(Integer id, LocalDateTime dataRegistro, String descricao, String categoria, Double valorLancamento) {
-        this.id = id;
+    public Extrato(LocalDateTime dataRegistro, String descricao, String categoria, Double valorLancamento) {
         this.dataRegistro = dataRegistro;
         this.descricao = descricao;
         this.categoria = categoria;

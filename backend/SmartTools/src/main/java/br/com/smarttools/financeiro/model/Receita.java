@@ -8,7 +8,7 @@ public class Receita extends Extrato{
     private Double valorEntrada;
 
     public Receita(Integer id, LocalDateTime dataRegistro, String descricao, String categoria, Double valorLancamento) {
-        super(id, dataRegistro, descricao, categoria, valorLancamento);
+        super(dataRegistro, descricao, categoria, valorLancamento);
         this.valorEntrada = valorLancamento;
     }
 
