@@ -5,6 +5,10 @@
     --color-four: #132C33;
     --color-five: #000;
     --color-six:  #D96E17;
+    --color-seven: #bcf5bc;
+    --color-eigth: 	#008000;
+    --color-nine: 	#f5bab3;
+    --color-ten: 	#FF0000;
 }
 *{
     margin: 0;
@@ -63,4 +67,68 @@
 
 .modal-container.mostrar{
     display: flex;
+}
+
+.input{
+    width: 250px;
+    height: 30px;
+    text-align: center;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.fomr_inputs{
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+
+.botao_salvar{
+    width: 250px;
+    background: var(--color-three);
+    color: var(--color-two);
+    border: solid var(--color-three);
+    font-weight: bold;
+}
+
+.botao_categoria_entrada{
+    width: 125px;
+    background-color: var(--color-seven);
+    text-decoration: none;
+    border: 2px solid var(--color-eigth);
+}
+.input_entrada{
+    width: 250px;
+    height: 30px;
+    text-align: center;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid var(--color-eigth);
+    color: var(--color-eigth);
+    font-weight: bold;
+}
+
+.botao_categoria_saida{
+    width: 125px;
+    background-color: var(--color-nine);
+    border: 2px solid var(--color-ten);
+}
+
+.input_saida{
+    width: 250px;
+    height: 30px;
+    text-align: center;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid var(--color-ten);
+    color: var(--color-ten);
+    font-weight: bold;
+}
+
+form{
+    width: 400px; 
+    margin-left: auto;
+    margin-right: auto;
 }

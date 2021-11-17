@@ -86,18 +86,50 @@
         </div>
     </div>
 
+
+
+
+
     <div id="modal-side" class="modal-container">
         <div class="modal">
             <button class="fechar" id="fechar">X</button>
             <h3 class="subtitulo">Cadastrar transação</h3>
-            <form action="">
-                <input class="input" type="text" name="" id="" placeholder="Descrição">
-                <input class="input" type="number" placeholder="R$ 00,00">
+            <form action="" class="cont-inputs" id="container_inputs">
 
-                <input type="button" name="" id="" class="button" value="Salvar">
+                <div id="fomr_inputs">
+                    <input class="input" type="text" name="" id="" placeholder="Descrição">
+                    <input class="input" type="Text" size="12" onKeyUp="mascaraMoeda(this, event)" placeholder="R$">
+                </div>
+
+                <input class="botao_categoria_entrada" onclick="entrada_mostrar()" type="button" value="Entrada"></input>
+                <input class="botao_categoria_saida" onclick="saida_mostrar()" type="button" value="Saída"></input>
+
+                <div id="form_inputs">
+                    <select class="input_entrada" name="" id="entrada" style="display: none;">
+                        <option value="" class="input_entrada">==selecione a categoria==</option>
+                        <option value="" class="input_entrada">Peça</option>
+                        <option value="" class="input_entrada">Manutenção</option>
+                        <option value="" class="input_entrada">Pintura</option>
+                        <option value="" class="input_entrada">Auto Elétrica</option>
+                    </select>
+
+                    <select class="input_saida" name="" id="saida" style="display: none;">
+                        <option value="" class="input_saida">==selecione a categoria==</option>
+                        <option value="" class="input_saida">Salário</option>
+                        <option value="" class="input_saida">Luz</option>
+                        <option value="" class="input_saida">Água</option>
+                        <option value="" class="input_saida">Aluguel</option>
+                        <option value="" class="input_saida">Impostos</option>
+                    </select>
+
+
+                    <input class="input" type="text" placeholder="Nome do cliente">
+                    <input class="input" type="text" placeholder="Placa do veículo">
+
+                    <input class="botao_salvar" type="button" value="Salvar">
+                </div>
             </form>
         </div>
-        
     </div>
 
 
@@ -130,6 +162,4 @@
 
         }
     }
-
-
 </script>
