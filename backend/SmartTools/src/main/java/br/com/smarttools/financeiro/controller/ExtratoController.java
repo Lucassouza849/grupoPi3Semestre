@@ -39,7 +39,7 @@ public class ExtratoController {
     public ResponseEntity adicionarDespesa(@RequestBody Despesa novaDespesa){
             novaDespesa.setDataRegistro(LocalDateTime.now());
             faturavelRepository.save(novaDespesa);
-            return ResponseEntity.status(201).build();
+            return ResponseEntity.status(201).build()   ;
     }
 
     @GetMapping
