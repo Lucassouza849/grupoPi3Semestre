@@ -19,7 +19,8 @@ public class Oficina {
     private String nomeOficina;
     @Column(name = "cnpj_oficina")
     private String cnpjOficina;
-
+    @Column(name = "telefone_oficina")
+    private String telefoneOficina;
 
     public Integer getId() {
         return id;
@@ -45,5 +46,11 @@ public class Oficina {
         this.cnpjOficina = cnpjOficina;
     }
 
+    public String getTelefoneOficina() {
+        return telefoneOficina;
+    }
 
+    public void setTelefoneOficina(String telefoneOficina) {
+        this.telefoneOficina = telefoneOficina;
+    }
 }
