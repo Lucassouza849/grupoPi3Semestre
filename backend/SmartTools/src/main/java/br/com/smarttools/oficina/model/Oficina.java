@@ -1,36 +1,25 @@
 package br.com.smarttools.oficina.model;
 
 import br.com.smarttools.usuario.model.Usuario;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Table(name = "tb_oficina")
 public class Oficina {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_oficina")
     private int id;
+    @Column(name = "nome_oficina")
     private String nomeOficina;
+    @Column(name = "cnpj_oficina")
     private String cnpjOficina;
 
-    @OneToOne
-    private Usuario usuario;
-
-    public Oficina(Integer id, String nomeOficina, String cnpjOficina, Usuario usuario) {
-        this.id = id;
-        this.nomeOficina = nomeOficina;
-        this.cnpjOficina = cnpjOficina;
-        this.usuario = usuario;
-    }
-
-    public Oficina(){}
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 
     public Integer getId() {
         return id;

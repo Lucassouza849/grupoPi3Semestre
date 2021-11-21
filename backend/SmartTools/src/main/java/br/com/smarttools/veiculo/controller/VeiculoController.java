@@ -59,26 +59,6 @@ public class VeiculoController {
         veiculoRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-
-
-    //filtro por cliente
-    @GetMapping("por-cliente/{cliente}")
-     public List<Veiculo> getVeiculoPorCliente(@PathVariable String cliente){
-        return veiculoRepository.findByCliente(cliente);
-     }
-
-     //filtro por modelo
-    @GetMapping("por-modelo/{modelo}")
-    public  List<Veiculo>getVeiculoPorModelo(@PathVariable String modelo){
-        return veiculoRepository.findByModelo(modelo);
-    }
-
-    //filtro pela placa do carro
-    @GetMapping("por-placa/{placa}")
-    public  List<Veiculo>getVeiculoPorPlaca(@PathVariable String placa){
-        return  veiculoRepository.findByPlaca(placa);
-    }
-
 }
 
 

@@ -8,7 +8,5 @@ import java.util.List;
 
 public interface FaturavelRepository extends JpaRepository<Extrato, Integer>{
 
-    List<Extrato> findByData(LocalDateTime data);
 
-    List<Extrato> findByValor(Double valor);
 }

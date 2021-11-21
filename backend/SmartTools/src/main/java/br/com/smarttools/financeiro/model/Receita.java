@@ -1,19 +1,19 @@
 package br.com.smarttools.financeiro.model;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Receita extends Extrato{
+
+    @Column(name = "valor_entrada_receita")
     private Double valorEntrada;
-
-    public Receita(Integer id, LocalDateTime dataRegistro, String descricao, String categoria, Double valorLancamento) {
-        super(dataRegistro, descricao, categoria, valorLancamento);
-        this.valorEntrada = valorLancamento;
-    }
-
-    public Receita(){}
-
 
     public Double getValorEntrada() {
         return valorEntrada;

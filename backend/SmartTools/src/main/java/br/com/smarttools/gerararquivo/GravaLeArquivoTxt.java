@@ -1,9 +1,8 @@
 package br.com.smarttools.gerararquivo;
 
-import br.com.smarttools.financeiro.model.Despesa;
 import br.com.smarttools.financeiro.model.Extrato;
-import br.com.smarttools.financeiro.model.Receita;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -92,12 +91,13 @@ public class GravaLeArquivoTxt {
                     }
                 } else if (tipoRegistro.equals("02")) {
                     System.out.println("Eh um registro de corpo");
+                    Integer id = Integer.valueOf(registro.substring(2,4).trim());
                     String descricao = registro.substring(2,27).trim();
                     Double valorLancamento = Double.valueOf(registro.substring(27, 36).replace(',', '.'));
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
                     LocalDateTime dataHoraLancamento = LocalDateTime.parse((registro.substring(35,55)), formatter);
                     String categoria = registro.substring(55, 70).trim();
-                    Extrato e = new Extrato(dataHoraLancamento, descricao, categoria, valorLancamento);
+                    Extrato e = new Extrato(id,dataHoraLancamento,valorLancamento,descricao,categoria);
                     listaLida.add(e);
                     ++contaRegDados;
                 } else {

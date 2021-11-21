@@ -3,19 +3,29 @@ package br.com.smarttools.usuario.model;
 import br.com.smarttools.financeiro.model.Extrato;
 import br.com.smarttools.oficina.model.Oficina;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Table(name = "tb_usuario")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
     private Integer id;
+    @Column(name = "nome_usuario")
     private String nomeUsuario;
+    @Column(name = "senha_usuario")
     private String senhaUsuario;
+    @Column(name = "email_usuario")
     private String emailUsuario;
-
+    @OneToOne
+    private Oficina oficina;
 
     public Usuario(String emailUsuario) {
         this.emailUsuario = emailUsuario;
@@ -27,8 +37,6 @@ public class Usuario {
     @Column(length = 20_000_000)
     private byte[] fotoPerfil;
 
-
-    public Usuario(){}
 
     public Integer getId() {
         return id;
@@ -69,4 +77,8 @@ public class Usuario {
     public void setFotoPerfil(byte[] fotoPerfil) {
         this.fotoPerfil = fotoPerfil;
     }
+
+    public Oficina getOficina() {return oficina;}
+
+    public void setOficina(Oficina oficina) {this.oficina = oficina;}
 }

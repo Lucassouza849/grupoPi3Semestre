@@ -16,11 +16,6 @@ public class Veiculo {
     private String tipoVeiculo;
     private String placaVeiculo;
 
-
-    @ManyToOne
-    private Cliente cliente;
-
-
     public Veiculo(Integer idVeiculo, String marcaVeiculo, String modeloVeiculo, String tipoVeiculo, String placaVeiculo) {
         this.idVeiculo = idVeiculo;
         this.marcaVeiculo = marcaVeiculo;
@@ -69,11 +64,4 @@ public class Veiculo {
         this.placaVeiculo = placaVeiculo;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
 }

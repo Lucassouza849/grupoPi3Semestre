@@ -74,7 +74,7 @@ public class UsuarioController {
     //autenticando o usuário
     @PostMapping("/autenticacoes")
     public ResponseEntity<UsuarioResposta> autenticarUsuario(@RequestBody UsuarioAutenticado usuarioAutenticado) {
-        Usuario usuario = usuarioRepository.findByNomeUsuario(usuarioAutenticado.getLogin())
+        Usuario usuario = usuarioRepository.findByEmailUsuario(usuarioAutenticado.getLogin())
                 .orElseThrow(RuntimeException::new);
         if (usuarioAutenticado.getSenha().equals(usuario.getSenhaUsuario())) {
             UsuarioResposta usuarioResposta = new UsuarioResposta(usuario.getNomeUsuario(),

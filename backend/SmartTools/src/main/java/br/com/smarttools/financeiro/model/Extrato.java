@@ -1,42 +1,33 @@
 package br.com.smarttools.financeiro.model;
 
-import br.com.smarttools.financeiro.repository.ExtratoRepository;
 import br.com.smarttools.oficina.model.Oficina;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-
+@DiscriminatorColumn(name="tipo_extrato")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "tb_Extrato")
 @Entity
-public class Extrato implements ExtratoRepository {
+public class Extrato{
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_extrato")
     private Integer id;
+    @Column(name = "data_registro_extrato")
     private LocalDateTime dataRegistro;
+    @Column(name = "valor_lancamento_extrato")
     private Double valorLancamento;
-//    private Double despesas;
-//    private Double receitas;
+    @Column(name = "descricao_extrato")
     private String descricao;
+    @Column(name = "categoria_extrato")
     private String categoria;
-
-    @ManyToOne
-    private Oficina oficina;
-    //private Receita receita;
-   // private Despesa despesa;
-
-
-    public Extrato(LocalDateTime dataRegistro, String descricao, String categoria, Double valorLancamento) {
-        this.dataRegistro = dataRegistro;
-        this.descricao = descricao;
-        this.categoria = categoria;
-        this.valorLancamento = valorLancamento;
-    }
-
-    public Extrato() {
-
-    }
 
 
     public Double getValorLancamento() {return valorLancamento;}
@@ -75,11 +66,4 @@ public class Extrato implements ExtratoRepository {
         this.categoria = categoria;
     }
 
-    public Oficina getOficina() {
-        return oficina;
-    }
-
-    public void setOficina(Oficina oficina) {
-        this.oficina = oficina;
-    }
 }

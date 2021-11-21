@@ -6,7 +6,6 @@ import br.com.smarttools.financeiro.model.Despesa;
 import br.com.smarttools.financeiro.model.Extrato;
 import br.com.smarttools.financeiro.model.Receita;
 import br.com.smarttools.financeiro.repository.FaturavelRepository;
-import br.com.smarttools.financeiro.repository.SaldoRepository;
 import br.com.smarttools.gerararquivo.Gravar;
 
 import br.com.smarttools.listaObj.FilaObj;
@@ -26,7 +25,6 @@ public class ExtratoController {
 
     @Autowired
     private FaturavelRepository faturavelRepository;
-    private SaldoRepository saldoRepository;
 
 
 
@@ -41,7 +39,7 @@ public class ExtratoController {
     public ResponseEntity adicionarDespesa(@RequestBody Despesa novaDespesa){
             novaDespesa.setDataRegistro(LocalDateTime.now());
             faturavelRepository.save(novaDespesa);
-            return ResponseEntity.status(201).build()   ;
+            return ResponseEntity.status(201).build();
     }
 
     @GetMapping
@@ -79,20 +77,6 @@ public class ExtratoController {
         return ResponseEntity.status(204).build();
     }
 
-
-    //filtro data
-    @GetMapping("/por-data/{data}")
-    public  List<Extrato>getDataExtrato(@PathVariable LocalDateTime data){
-        return  faturavelRepository.findByData(data);
-
-    }
-
-    //filtro valor
-    @GetMapping("por-valor/{valor}")
-    public  List<Extrato> getValorExtrato(@PathVariable Double valor){
-        return  faturavelRepository.findByValor(valor);
-    }
-
 //    @GetMapping("extrato")
 //    public ResponseEntity<Extrato> getExtratoUsingStack(@PathVariable PilhaObj<Extrato> pilha) {
 //
@@ -102,57 +86,6 @@ public class ExtratoController {
 //        //return ResponseEntity.status(200).body();
 //    }
 
-
-// List<Extrato>
-//@GetMapping
-//public ResponseEntity getExtrato() {
-//
-//    List<Extrato> extrato = repository.findAll();
-//    Iterator<Extrato> it = extrato.iterator();
-//
-//    Extrato ext = new Extrato();
-//
-//    if (extrato.isEmpty()) {
-//        return ResponseEntity.status(204).build();
-//    } else {
-//        return ResponseEntity.status(200).body(extrato);
-//
-//    }
-//}
-//
-//    @GetMapping("/primeiroExtrato")
-//    public ResponseEntity getUltimoExtrato() {
-//
-//        List<Extrato> extrato = repository.findAll();
-//        Iterator<Extrato> it = extrato.iterator();
-//
-//        Extrato ext = new Extrato();
-//
-//        if (extrato.isEmpty()) {
-//            return ResponseEntity.status(204).build();
-//        } else {
-//            ext = it.next();
-//            return ResponseEntity.status(200).body(ext);
-//
-//        }
-//    }
-//
-//
-//    @GetMapping("/{id}")
-//    public ResponseEntity getExtrato(@PathVariable int id) {
-//        return ResponseEntity.of(repository.findById(id));
-//    }
-//
-//
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity deleteExtrato(@PathVariable int id)  {
-//        if (repository.existsById(id)) {
-//            repository.deleteById(id);
-//            return ResponseEntity.status(200).build();
-//        } else {
-//            return ResponseEntity.status(404).build();
-//        }
-//    }
 
     @DeleteMapping("{id}")
     public ResponseEntity deleteWithDescription(@PathVariable Integer id) {
@@ -176,10 +109,7 @@ public class ExtratoController {
         }
     }
 
-
-
-
-    }
+}
 
 
 

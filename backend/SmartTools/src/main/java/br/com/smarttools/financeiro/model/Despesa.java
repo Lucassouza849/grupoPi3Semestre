@@ -1,18 +1,19 @@
 package br.com.smarttools.financeiro.model;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Despesa extends Extrato {
+
+    @Column(name = "saida_despesa")
     public Double saida;
-
-    public Despesa(Integer id, LocalDateTime dataRegistro, String descricao, String categoria, Double valorLancamento) {
-        super(dataRegistro, descricao, categoria, valorLancamento);
-        this.saida = valorLancamento;
-    }
-
-    public Despesa(){}
 
     public Double getSaida() {
         return saida;
