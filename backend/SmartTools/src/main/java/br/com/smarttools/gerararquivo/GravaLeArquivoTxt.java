@@ -36,7 +36,7 @@ public class GravaLeArquivoTxt {
 
     }
 
-    public static void gravaArquivoTxt(List<Extrato> lista, String nomeArq) {
+    public void gravaArquivoTxt(List<Extrato> lista, String nomeArq) {
         int contaRegistro = 0;
         String header = "00EXTRATO";
         Date dataDeHoje = new Date();
@@ -48,6 +48,7 @@ public class GravaLeArquivoTxt {
         for(Iterator var7 = lista.iterator(); var7.hasNext(); ++contaRegistro) {
             Extrato e = (Extrato)var7.next();
             String corpo = "02";
+            corpo = corpo + String.format("-3.3d", e.getId());
             corpo = corpo + String.format("%-25.25s", e.getDescricao());
             corpo = corpo + String.format("%07.2f", e.getValorLancamento());
             corpo = corpo + String.format("%-19.19s", e.getDataRegistro());
@@ -92,11 +93,11 @@ public class GravaLeArquivoTxt {
                 } else if (tipoRegistro.equals("02")) {
                     System.out.println("Eh um registro de corpo");
                     Integer id = Integer.valueOf(registro.substring(2,4).trim());
-                    String descricao = registro.substring(2,27).trim();
-                    Double valorLancamento = Double.valueOf(registro.substring(27, 36).replace(',', '.'));
+                    String descricao = registro.substring(4,29).trim();
+                    Double valorLancamento = Double.valueOf(registro.substring(29, 38).replace(',', '.'));
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                    LocalDateTime dataHoraLancamento = LocalDateTime.parse((registro.substring(35,55)), formatter);
-                    String categoria = registro.substring(55, 70).trim();
+                    LocalDateTime dataHoraLancamento = LocalDateTime.parse((registro.substring(38,57)), formatter);
+                    String categoria = registro.substring(57, 72).trim();
                     Extrato e = new Extrato(id,dataHoraLancamento,valorLancamento,descricao,categoria);
                     listaLida.add(e);
                     ++contaRegDados;

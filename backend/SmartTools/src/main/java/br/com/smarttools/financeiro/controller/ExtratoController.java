@@ -6,6 +6,7 @@ import br.com.smarttools.financeiro.model.Despesa;
 import br.com.smarttools.financeiro.model.Extrato;
 import br.com.smarttools.financeiro.model.Receita;
 import br.com.smarttools.financeiro.repository.FaturavelRepository;
+import br.com.smarttools.gerararquivo.GravaLeArquivoTxt;
 import br.com.smarttools.gerararquivo.Gravar;
 
 import br.com.smarttools.listaObj.ListaObj;
@@ -14,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -53,28 +55,12 @@ public class ExtratoController {
         }
     }
 
-    @GetMapping("/csv")
-    public ResponseEntity getCsv(){
-        Gravar g = new Gravar();
-        ListaObj<Extrato> listaObj = new ListaObj<>((int) faturavelRepository.count());
-        ListaObj<Receita> listaReceitas= new ListaObj<>((int) faturavelRepository.count());
-        ListaObj<Despesa> listaDespesas= new ListaObj<>((int) faturavelRepository.count());
-        for(Extrato c : faturavelRepository.findAll()){
-                listaObj.adiciona(c);
-        }
-
-        for(Extrato q: faturavelRepository.findAll()){
-            if (q instanceof Receita) {
-                listaReceitas.adiciona((Receita) q);
-            }
-        }
-        for(Extrato e: faturavelRepository.findAll()){
-            if (e instanceof Despesa) {
-                listaDespesas.adiciona((Despesa) e);
-            }
-        }
-        g.gravaArquivoCsv(listaObj, listaDespesas, listaReceitas, "relatorio");
-        return ResponseEntity.status(204).build();
+    @GetMapping("/txt")
+    public ResponseEntity getTxt(){
+        List<Extrato> lista = new ArrayList<>();
+        GravaLeArquivoTxt grava = new GravaLeArquivoTxt();
+        grava.gravaArquivoTxt(lista,"extrato.txt");
+        return ResponseEntity.status(201).build();
     }
 
 //    @GetMapping("extrato")
