@@ -2,41 +2,37 @@ package br.com.smarttools.cliente.model;
 
 import br.com.smarttools.financeiro.model.Extrato;
 import br.com.smarttools.veiculo.model.Veiculo;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
+@Table(name = "tb_cliente")
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(name = "id_cliente")
     private Integer id;
+    @Column(name = "nome_cliente")
     private String nome;
+    @Column(name = "telefone_cliente")
     private String telefone;
+    @Column(name = "cpf_cliente")
     private String cpf;
+    @Column(name = "email_cliente")
     private String email;
 
-
     @ManyToOne
+    @JoinColumn(name = "fk_extrato")
     private Extrato extrato;
 
-    public Cliente(Integer id, String nome, String telefone, String cpf, String email) {
-        this.id = id;
-        this.nome = nome;
-        this.telefone = telefone;
-        this.cpf = cpf;
-        this.email = email;
-    }
+    public Integer getId() {return id;}
 
-    public Cliente(){
-
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public void setId(Integer id) {this.id = id;}
 
     public String getNome() {
         return nome;

@@ -1,28 +1,33 @@
 package br.com.smarttools.veiculo.model;
 
 import br.com.smarttools.cliente.model.Cliente;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@Table(name = "tb_veiculo")
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Veiculo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(name = "id_veiculo")
     private Integer idVeiculo;
-
+    @Column(name = "marca_veiculo")
     private String marcaVeiculo;
+    @Column(name = "modelo_veiculo")
     private String modeloVeiculo;
+    @Column(name = "tipo_veiculo")
     private String tipoVeiculo;
+    @Column(name = "placa_veiculo")
     private String placaVeiculo;
-
-    public Veiculo(Integer idVeiculo, String marcaVeiculo, String modeloVeiculo, String tipoVeiculo, String placaVeiculo) {
-        this.idVeiculo = idVeiculo;
-        this.marcaVeiculo = marcaVeiculo;
-        this.modeloVeiculo = modeloVeiculo;
-        this.tipoVeiculo = tipoVeiculo;
-        this.placaVeiculo = placaVeiculo;
-    }
+    @JoinColumn(name = "fk_cliente")
+    @ManyToOne
+    private Cliente cliente;
 
     public Integer getIdVeiculo() {
         return idVeiculo;
@@ -64,4 +69,7 @@ public class Veiculo {
         this.placaVeiculo = placaVeiculo;
     }
 
+    public Cliente getCliente() {return cliente;}
+
+    public void setCliente(Cliente cliente) {this.cliente = cliente;}
 }
