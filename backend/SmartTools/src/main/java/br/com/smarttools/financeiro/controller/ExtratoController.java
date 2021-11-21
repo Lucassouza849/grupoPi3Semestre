@@ -8,9 +8,7 @@ import br.com.smarttools.financeiro.model.Receita;
 import br.com.smarttools.financeiro.repository.FaturavelRepository;
 import br.com.smarttools.gerararquivo.Gravar;
 
-import br.com.smarttools.listaObj.FilaObj;
 import br.com.smarttools.listaObj.ListaObj;
-import br.com.smarttools.listaObj.PilhaObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +16,11 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/extratos")
+@CrossOrigin
 public class ExtratoController {
 
     @Autowired

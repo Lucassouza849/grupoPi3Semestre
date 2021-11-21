@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/oficinas")
+@CrossOrigin
 public class OficinaController {
     @Autowired
     private OficinaRepository oficinaRepository;
