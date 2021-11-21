@@ -9,7 +9,9 @@ import br.com.smarttools.financeiro.repository.FaturavelRepository;
 import br.com.smarttools.financeiro.repository.SaldoRepository;
 import br.com.smarttools.gerararquivo.Gravar;
 
+import br.com.smarttools.listaObj.FilaObj;
 import br.com.smarttools.listaObj.ListaObj;
+import br.com.smarttools.listaObj.PilhaObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -90,6 +92,16 @@ public class ExtratoController {
     public  List<Extrato> getValorExtrato(@PathVariable Double valor){
         return  faturavelRepository.findByValor(valor);
     }
+
+//    @GetMapping("extrato")
+//    public ResponseEntity<Extrato> getExtratoUsingStack(@PathVariable PilhaObj<Extrato> pilha) {
+//
+//        if (pilha.isEmpty()) {
+//            return ResponseEntity.status(204).build();
+//        }
+//        //return ResponseEntity.status(200).body();
+//    }
+
 
 // List<Extrato>
 //@GetMapping

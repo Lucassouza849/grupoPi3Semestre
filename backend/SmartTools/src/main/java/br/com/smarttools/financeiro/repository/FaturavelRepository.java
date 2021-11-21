@@ -10,5 +10,5 @@ public interface FaturavelRepository extends JpaRepository<Extrato, Integer>{
 
     List<Extrato> findByData(LocalDateTime data);
 
-    List<Extrato> findByValor(Double valaor);
+    List<Extrato> findByValor(Double valor);
 }
