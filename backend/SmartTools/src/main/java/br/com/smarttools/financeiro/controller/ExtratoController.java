@@ -1,7 +1,5 @@
 package br.com.smarttools.financeiro.controller;
 
-
-
 import br.com.smarttools.financeiro.model.Despesa;
 import br.com.smarttools.financeiro.model.Extrato;
 import br.com.smarttools.financeiro.model.Receita;
@@ -10,6 +8,7 @@ import br.com.smarttools.gerararquivo.GravaLeArquivoTxt;
 import br.com.smarttools.gerararquivo.Gravar;
 
 import br.com.smarttools.listaObj.ListaObj;
+import br.com.smarttools.listaObj.PilhaObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +27,8 @@ public class ExtratoController {
     @Autowired
     private FaturavelRepository faturavelRepository;
 
+ //   private Integer tamanhoPilha = Math.toIntExact(faturavelRepository.count());
+    PilhaObj<Extrato> pilha = new PilhaObj<>( 1);
 
 
     @PostMapping("/receitas")
@@ -63,15 +64,25 @@ public class ExtratoController {
         return ResponseEntity.status(201).build();
     }
 
-//    @GetMapping("extrato")
-//    public ResponseEntity<Extrato> getExtratoUsingStack(@PathVariable PilhaObj<Extrato> pilha) {
-//
-//        if (pilha.isEmpty()) {
-//            return ResponseEntity.status(204).build();
-//        }
-//        //return ResponseEntity.status(200).body();
-//    }
+    @GetMapping("/buscar-pilha")
+    public ResponseEntity<Extrato> getExtratoUsingStack() {
 
+        if (pilha.isEmpty()) {
+            return ResponseEntity.status(204).build();
+        }
+        pilha.exibe();
+        return ResponseEntity.status(200).build();
+    }
+
+    @PostMapping("adicionar-transacao/")
+    public ResponseEntity<Extrato> postExtrato() {
+
+        for(int i = 0; i < faturavelRepository.count(); i++) {
+            pilha.push(faturavelRepository.getById(i));
+        }
+
+        return ResponseEntity.status(201).build();
+    }
 
     @DeleteMapping("{id}")
     public ResponseEntity deleteWithDescription(@PathVariable Integer id) {
@@ -94,9 +105,4 @@ public class ExtratoController {
             return ResponseEntity.status(204).build();
         }
     }
-
 }
-
-
-
-
