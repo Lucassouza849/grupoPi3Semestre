@@ -26,8 +26,8 @@ public class Veiculo {
     @Column(name = "placa_veiculo")
     private String placaVeiculo;
     @JoinColumn(name = "fk_cliente")
-    @ManyToOne
-    private Cliente cliente;
+//    @ManyToOne
+//    private Cliente cliente;
 
     public Integer getIdVeiculo() {
         return idVeiculo;
@@ -69,7 +69,7 @@ public class Veiculo {
         this.placaVeiculo = placaVeiculo;
     }
 
-    public Cliente getCliente() {return cliente;}
-
-    public void setCliente(Cliente cliente) {this.cliente = cliente;}
+//    public Cliente getCliente() {return cliente;}
+//
+//    public void setCliente(Cliente cliente) {this.cliente = cliente;}
 }

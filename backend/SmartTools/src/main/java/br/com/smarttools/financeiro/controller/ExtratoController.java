@@ -5,9 +5,10 @@ package br.com.smarttools.financeiro.controller;
 import br.com.smarttools.financeiro.model.Despesa;
 import br.com.smarttools.financeiro.model.Extrato;
 import br.com.smarttools.financeiro.model.Receita;
+import br.com.smarttools.financeiro.receitasresposta.TotalReceitasResposta;
 import br.com.smarttools.financeiro.repository.FaturavelRepository;
-import br.com.smarttools.gerararquivo.GravaLeArquivoTxt;
-import br.com.smarttools.gerararquivo.Gravar;
+//import br.com.smarttools.gerararquivo.GravaLeArquivoTxt;
+//import br.com.smarttools.gerararquivo.Gravar;
 
 import br.com.smarttools.listaObj.ListaObj;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -28,18 +31,16 @@ public class ExtratoController {
     @Autowired
     private FaturavelRepository faturavelRepository;
 
-
-
     @PostMapping("/receitas")
     public ResponseEntity adicionarReceita(@RequestBody Receita novaReceita){
-            novaReceita.setDataRegistro(LocalDateTime.now());
+//            novaReceita.setDataRegistro(OffsetDateTime.now());
             faturavelRepository.save(novaReceita);
             return ResponseEntity.status(201).build();
     }
 
     @PostMapping("/despesas")
     public ResponseEntity adicionarDespesa(@RequestBody Despesa novaDespesa){
-            novaDespesa.setDataRegistro(LocalDateTime.now());
+//            novaDespesa.setDataRegistro(OffsetDateTime.now());
             faturavelRepository.save(novaDespesa);
             return ResponseEntity.status(201).build();
     }
@@ -54,14 +55,14 @@ public class ExtratoController {
             return ResponseEntity.status(200).body(extrato);
         }
     }
-
-    @GetMapping("/txt")
-    public ResponseEntity getTxt(){
-        List<Extrato> lista = new ArrayList<>();
-        GravaLeArquivoTxt grava = new GravaLeArquivoTxt();
-        grava.gravaArquivoTxt(lista,"extrato.txt");
-        return ResponseEntity.status(201).build();
-    }
+//
+//    @GetMapping("/txt")
+//    public ResponseEntity getTxt(){
+//        List<Extrato> lista = new ArrayList<>();
+//        GravaLeArquivoTxt grava = new GravaLeArquivoTxt();
+//        grava.gravaArquivoTxt(lista,"extrato.txt");
+//        return ResponseEntity.status(201).build();
+//    }
 
 //    @GetMapping("extrato")
 //    public ResponseEntity<Extrato> getExtratoUsingStack(@PathVariable PilhaObj<Extrato> pilha) {
