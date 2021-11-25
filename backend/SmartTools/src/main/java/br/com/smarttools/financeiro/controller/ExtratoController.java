@@ -84,25 +84,25 @@ public class ExtratoController {
         return ResponseEntity.status(201).build();
     }
 
-//    @DeleteMapping("{id}")
-//    public ResponseEntity deleteWithDescription(@PathVariable Integer id) {
-//
-//    List<Extrato> extrato = faturavelRepository.findAll();
-//    Iterator<Extrato> it = extrato.iterator();
-//    System.out.println("TAMANHO =" + extrato.size());
-//    Extrato ext = new Extrato();
-//        if (faturavelRepository.existsById(id)) {
-//            while (it.hasNext()) {
-//                ext = (Extrato) it.next();
-//
-//                if(ext.getId().equals(id)) {
-//                    it.remove();
-//                    faturavelRepository.deleteById(id);
-//                }
-//            }
-//            return ResponseEntity.status(200).build();
-//        } else {
-//            return ResponseEntity.status(204).build();
-//        }
-//    }
+@DeleteMapping("{id}")
+    public ResponseEntity deleteWithDescription(@PathVariable Integer id) {
+
+    List<Extrato> extrato = faturavelRepository.findAll();
+    Iterator<Extrato> it = extrato.iterator();
+    System.out.println("TAMANHO =" + extrato.size());
+    Extrato ext = new Extrato();
+        if (faturavelRepository.existsById(id)) {
+            while (it.hasNext()) {
+                ext = (Extrato) it.next();
+
+                if(ext.getId().equals(id)) {
+                    it.remove();
+                    faturavelRepository.deleteById(id);
+                }
+            }
+            return ResponseEntity.status(200).build();
+        } else {
+            return ResponseEntity.status(204).build();
+        }
+    }
 }
