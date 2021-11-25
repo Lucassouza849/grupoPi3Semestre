@@ -50,13 +50,6 @@ public class VeiculoController {
 
     @PostMapping
     public ResponseEntity<Veiculo> createVeiculo(@RequestBody Veiculo newVeiculo){
-        boolean emailEmUso = veiculoRepository.findById(newVeiculo.getIdVeiculo())
-                .stream()
-                .anyMatch(veiculoExistente -> !veiculoExistente.equals(newVeiculo));
-
-        if (emailEmUso){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
         veiculoRepository.save(newVeiculo);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

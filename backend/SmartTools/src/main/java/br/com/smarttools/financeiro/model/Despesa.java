@@ -23,10 +23,4 @@ public class Despesa extends Extrato {
         this.saida = saida;
     }
 
-    @Override
-    public String toString() {
-        return "Despesa{" +
-                "saida=" + saida +
-                "} " + super.toString();
-    }
 }
