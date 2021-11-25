@@ -8,6 +8,7 @@ import br.com.smarttools.financeiro.repository.FaturavelRepository;
 //import br.com.smarttools.gerararquivo.GravaLeArquivoTxt;
 //import br.com.smarttools.gerararquivo.Gravar;
 
+import br.com.smarttools.gerararquivo.GravaLeArquivoTxt;
 import br.com.smarttools.listaObj.ListaObj;
 import br.com.smarttools.listaObj.PilhaObj;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,14 +80,17 @@ public class ExtratoController {
             return ResponseEntity.status(200).body(extrato);
         }
     }
-//
-//    @GetMapping("/txt")
-//    public ResponseEntity getTxt(){
-//        List<Extrato> lista = new ArrayList<>();
-//        GravaLeArquivoTxt grava = new GravaLeArquivoTxt();
-//        grava.gravaArquivoTxt(lista,"extrato.txt");
-//        return ResponseEntity.status(201).build();
-//    }
+
+    @GetMapping("/txt")
+    public ResponseEntity getTxt(){
+        List<Extrato> lista = new ArrayList<>();
+
+        GravaLeArquivoTxt grava = new GravaLeArquivoTxt();
+
+        grava.gravaArquivoTxt(faturavelRepository.findAll(),"extrato.txt");
+
+        return ResponseEntity.status(201).build();
+    }
 
     @PostMapping("adicionar-transacao/")
     public ResponseEntity<Extrato> postExtrato() {
