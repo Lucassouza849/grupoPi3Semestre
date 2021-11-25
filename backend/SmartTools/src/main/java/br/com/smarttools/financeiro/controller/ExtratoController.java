@@ -11,6 +11,7 @@ import br.com.smarttools.listaObj.ListaObj;
 import br.com.smarttools.listaObj.PilhaObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -26,22 +27,58 @@ public class ExtratoController {
 
     @Autowired
     private FaturavelRepository faturavelRepository;
+    PilhaObj<Extrato> pilha = new PilhaObj<Extrato>(1000);
+    private final long SEGUNDO = 1000;
+    private final long MINUTO = SEGUNDO * 60;
+    List<Extrato> listaExtrato = new ArrayList<>();
+    int contador = 0;
 
- //   private Integer tamanhoPilha = Math.toIntExact(faturavelRepository.count());
-    PilhaObj<Extrato> pilha = new PilhaObj<>( 1);
+//    @Scheduled(fixedDelay = SEGUNDO)
+//    public void adicionaNoBanco() {
+
+//    }
+
+    @Scheduled(cron = "0/10 * * * * *")
+    public void adicionaBancoTeste(){
+        if(pilha.isEmpty()) {
+            System.out.println("Pilha vazia");
+        }else{
+            pilha.exibe();
+
+            for(int i = 0; i <= faturavelRepository.count(); i++){
+                listaExtrato.add(pilha.pop());
+                contador++;
+                System.out.println("FOIIIIIII");
+            }
+        }
+    }
+
+
+    @Scheduled(cron = "0/9 * * * * *")
+    public void mandaBanco() {
+        if(!listaExtrato.isEmpty()){
+            for(int i = 0; i < contador; i++){
+                faturavelRepository.save(listaExtrato.get(i));
+                System.out.println("OOOOOO disgrama");
+            }
+        }else {
+            System.out.println("SEU BURRO");
+        }
+    }
+
 
 
     @PostMapping("/receitas")
     public ResponseEntity adicionarReceita(@RequestBody Receita novaReceita){
             novaReceita.setDataRegistro(LocalDateTime.now());
-            faturavelRepository.save(novaReceita);
+            pilha.push(novaReceita);
             return ResponseEntity.status(201).build();
     }
 
     @PostMapping("/despesas")
     public ResponseEntity adicionarDespesa(@RequestBody Despesa novaDespesa){
             novaDespesa.setDataRegistro(LocalDateTime.now());
-            faturavelRepository.save(novaDespesa);
+            pilha.push(novaDespesa);
             return ResponseEntity.status(201).build();
     }
 
@@ -49,7 +86,8 @@ public class ExtratoController {
     public ResponseEntity todosEntradas(){
 
         List<Extrato> extrato = faturavelRepository.findAll();
-        if (extrato.isEmpty()) {
+
+        if (pilha.isEmpty()) {
             return ResponseEntity.status(204).build();
         } else {
             return ResponseEntity.status(200).body(extrato);

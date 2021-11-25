@@ -54,4 +54,20 @@ public class PilhaObj <T> {
             }
         }
     }
+
+    public int count() {
+
+        int contador = 0;
+
+        if (isEmpty()) {
+            System.out.println("Pilha vazia");
+            return 0;
+        }else {
+            for(int i = 0;  i <= topo; i++){
+                contador++;
+            }
+            return contador;
+        }
+    }
+
 }

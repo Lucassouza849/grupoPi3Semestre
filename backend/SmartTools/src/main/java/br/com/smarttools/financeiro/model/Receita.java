@@ -23,4 +23,10 @@ public class Receita extends Extrato{
         this.valorEntrada = valorEntrada;
     }
 
+    @Override
+    public String toString() {
+        return "Receita{" +
+                "valorEntrada=" + valorEntrada +
+                "} " + super.toString();
+    }
 }

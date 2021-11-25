@@ -66,4 +66,14 @@ public class Extrato{
         this.categoria = categoria;
     }
 
+    @Override
+    public String toString() {
+        return "Extrato{" +
+                "id=" + id +
+                ", dataRegistro=" + dataRegistro +
+                ", valorLancamento=" + valorLancamento +
+                ", descricao='" + descricao + '\'' +
+                ", categoria='" + categoria + '\'' +
+                '}';
+    }
 }

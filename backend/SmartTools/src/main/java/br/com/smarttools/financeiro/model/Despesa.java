@@ -22,4 +22,11 @@ public class Despesa extends Extrato {
     public void setSaida(Double saida) {
         this.saida = saida;
     }
+
+    @Override
+    public String toString() {
+        return "Despesa{" +
+                "saida=" + saida +
+                "} " + super.toString();
+    }
 }
