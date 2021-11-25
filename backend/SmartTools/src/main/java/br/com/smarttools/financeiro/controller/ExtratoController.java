@@ -102,7 +102,7 @@ public class ExtratoController {
         return ResponseEntity.status(201).build();
     }
 
-    @DeleteMapping("{id}")
+@DeleteMapping("{id}")
     public ResponseEntity deleteWithDescription(@PathVariable Integer id) {
 
     List<Extrato> extrato = faturavelRepository.findAll();
