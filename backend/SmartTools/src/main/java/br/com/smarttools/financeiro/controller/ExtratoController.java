@@ -33,40 +33,6 @@ public class ExtratoController {
     List<Extrato> listaExtrato = new ArrayList<>();
     int contador = 0;
 
-//    @Scheduled(fixedDelay = SEGUNDO)
-//    public void adicionaNoBanco() {
-
-//    }
-
-    @Scheduled(cron = "0/10 * * * * *")
-    public void adicionaBancoTeste(){
-        if(pilha.isEmpty()) {
-            System.out.println("Pilha vazia");
-        }else{
-            pilha.exibe();
-
-            for(int i = 0; i <= faturavelRepository.count(); i++){
-                listaExtrato.add(pilha.pop());
-                contador++;
-                System.out.println("FOIIIIIII");
-            }
-        }
-    }
-
-
-    @Scheduled(cron = "0/9 * * * * *")
-    public void mandaBanco() {
-        if(!listaExtrato.isEmpty()){
-            for(int i = 0; i < contador; i++){
-                faturavelRepository.save(listaExtrato.get(i));
-                System.out.println("OOOOOO disgrama");
-            }
-        }else {
-            System.out.println("SEU BURRO");
-        }
-    }
-
-
 
     @PostMapping("/receitas")
     public ResponseEntity adicionarReceita(@RequestBody Receita novaReceita){
@@ -82,12 +48,29 @@ public class ExtratoController {
             return ResponseEntity.status(201).build();
     }
 
+    @Scheduled(cron = "0/15 * * * * *")
+    public void adicionaBancoTeste(){
+
+        if(pilha.isEmpty()) {
+            System.out.println("Pilha vazia");
+        }else{
+            for(int i = 0; i < contador + 1; i++){
+                System.out.println("Esvaziando a pilha....");
+                listaExtrato.add(pilha.pop());
+                faturavelRepository.save(listaExtrato.get(i));
+                contador++;
+                if (pilha.isEmpty()){
+                    contador--;
+                }
+            }
+        }
+    }
+
     @GetMapping
     public ResponseEntity todosEntradas(){
 
         List<Extrato> extrato = faturavelRepository.findAll();
-
-        if (pilha.isEmpty()) {
+        if (extrato.isEmpty()) {
             return ResponseEntity.status(204).build();
         } else {
             return ResponseEntity.status(200).body(extrato);
@@ -100,16 +83,6 @@ public class ExtratoController {
         GravaLeArquivoTxt grava = new GravaLeArquivoTxt();
         grava.gravaArquivoTxt(lista,"extrato.txt");
         return ResponseEntity.status(201).build();
-    }
-
-    @GetMapping("/buscar-pilha")
-    public ResponseEntity<Extrato> getExtratoUsingStack() {
-
-        if (pilha.isEmpty()) {
-            return ResponseEntity.status(204).build();
-        }
-        pilha.exibe();
-        return ResponseEntity.status(200).build();
     }
 
     @PostMapping("adicionar-transacao/")
