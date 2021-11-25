@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -94,11 +95,11 @@ public class GravaLeArquivoTxt {
                     System.out.println("Eh um registro de corpo");
                     Integer id = Integer.valueOf(registro.substring(2,4).trim());
                     String descricao = registro.substring(4,29).trim();
-//                    Double valorLancamento = Double.valueOf(registro.substring(29, 38).replace(',', '.'));
-//                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-//                    LocalDateTime dataHoraLancamento = LocalDateTime.parse((registro.substring(38,57)), formatter);
-                    String categoria = registro.substring(29, 44).trim();
-                    Extrato e = new Extrato(id,descricao,categoria);
+                    Double valorLancamento = Double.valueOf(registro.substring(29, 38).replace(',', '.'));
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                    OffsetDateTime dataHoraLancamento = OffsetDateTime.parse((registro.substring(38,57)), formatter);
+                    String categoria = registro.substring(57, 72).trim();
+                    Extrato e = new Extrato(id,dataHoraLancamento, valorLancamento, descricao,categoria);
                     listaLida.add(e);
                     ++contaRegDados;
                 } else {

@@ -25,10 +25,10 @@ public class Extrato{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_extrato")
     private Integer id;
-//    @Column(name = "data_registro_extrato")
-//    private OffsetDateTime dataRegistro;
-//    @Column(name = "valor_lancamento_extrato")
-//    private Double valorLancamento;
+    @Column(name = "data_registro_extrato")
+    private OffsetDateTime dataRegistro;
+    @Column(name = "valor_lancamento_extrato")
+    private Double valorLancamento;
     @Column(name = "descricao_extrato")
     private String descricao;
     @Column(name = "categoria_extrato")
