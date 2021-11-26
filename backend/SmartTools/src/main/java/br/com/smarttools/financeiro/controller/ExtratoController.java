@@ -52,20 +52,17 @@ public class ExtratoController {
             return ResponseEntity.status(201).build();
     }
 
-    @Scheduled(cron = "0/15 * * * * *")
-    public void adicionaBancoTeste(){
+    @Scheduled(cron = "0/5 * * * * *")
+    public void adicionaBanco(){
 
         if(pilha.isEmpty()) {
             System.out.println("Pilha vazia");
         }else{
-            for(int i = 0; i < contador + 1; i++){
+            while (!pilha.isEmpty()){
                 System.out.println("Esvaziando a pilha....");
                 listaExtrato.add(pilha.pop());
-                faturavelRepository.save(listaExtrato.get(i));
-                contador++;
-                if (pilha.isEmpty()){
-                    contador--;
-                }
+                faturavelRepository.save(listaExtrato.get(contador));
+                contador+= 1;
             }
         }
     }
