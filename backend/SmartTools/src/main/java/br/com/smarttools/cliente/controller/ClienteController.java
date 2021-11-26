@@ -2,10 +2,12 @@ package br.com.smarttools.cliente.controller;
 
 import br.com.smarttools.cliente.model.Cliente;
 import br.com.smarttools.cliente.repository.ClienteRepository;
+import br.com.smarttools.listaObj.FilaObj;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +20,7 @@ public class ClienteController {
 
     @Autowired
     private ClienteRepository clienteRepository;
+    FilaObj<Cliente> fila = new FilaObj<>(1000);
 
     @GetMapping
     public List<Cliente> getClientes() {
@@ -29,6 +32,20 @@ public class ClienteController {
         return clienteRepository.findById(id).get();
     }
 
+    @Scheduled(cron = "0/5 * * * * *")
+    public void insereBanco(){
+        if(fila.isEmpty()){
+            System.out.println("fila vazia");
+        }else{
+            while (!fila.isEmpty()) {
+                System.out.println("esvaziando fila");
+                clienteRepository.save(fila.poll());
+            }
+        }
+
+    }
+
+
     @PostMapping
     public ResponseEntity<Cliente> createClient(@RequestBody Cliente newCliente){
        boolean emailEmUso = clienteRepository.findByEmail(newCliente.getEmail())
@@ -38,7 +55,7 @@ public class ClienteController {
          if (emailEmUso){
              return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
          }
-         clienteRepository.save(newCliente);
+         fila.insert(newCliente);
          return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
