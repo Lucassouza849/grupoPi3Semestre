@@ -51,8 +51,8 @@ public class GravaLeArquivoTxt {
             String corpo = "02";
             corpo = corpo + String.format("-3.3d", e.getId());
             corpo = corpo + String.format("%-25.25s", e.getDescricao());
-//            corpo = corpo + String.format("%07.2f", e.getValorLancamento());
-//            corpo = corpo + String.format("%-19.19s", e.getDataRegistro());
+            corpo = corpo + String.format("%07.2f", e.getValorLancamento());
+            corpo = corpo + String.format("%-19.19s", e.getDataRegistro());
             corpo = corpo + String.format("%-15.15s", e.getCategoria());
             gravaRegistro(nomeArq, corpo);
         }
