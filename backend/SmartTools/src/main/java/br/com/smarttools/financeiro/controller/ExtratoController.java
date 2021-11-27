@@ -15,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
@@ -76,6 +78,27 @@ public class ExtratoController {
         } else {
             return ResponseEntity.status(200).body(extrato);
         }
+    }
+
+
+    @PatchMapping("/upload/{id}")
+    public ResponseEntity patchFoto(@PathVariable Integer id,
+                                    @RequestParam MultipartFile txt) throws IOException {
+
+        Extrato extrato = faturavelRepository.findById(id).get();
+
+        byte[] novaArquivo = txt.getBytes();
+        long tamanho = txt.getSize();
+
+        String tipo = txt.getContentType();
+
+        String nomeOriginal = txt.getOriginalFilename();
+
+        extrato.setTxt(novaArquivo);
+
+        faturavelRepository.save(extrato);
+
+        return ResponseEntity.status(200).build();
     }
 
     @GetMapping("/txt")

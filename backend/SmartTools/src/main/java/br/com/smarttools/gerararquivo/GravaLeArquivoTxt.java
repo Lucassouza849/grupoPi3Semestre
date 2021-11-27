@@ -99,7 +99,7 @@ public class GravaLeArquivoTxt {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
                     OffsetDateTime dataHoraLancamento = OffsetDateTime.parse((registro.substring(38,57)), formatter);
                     String categoria = registro.substring(57, 72).trim();
-                    Extrato e = new Extrato(id,dataHoraLancamento, valorLancamento, descricao,categoria);
+                    Extrato e = new Extrato();
                     listaLida.add(e);
                     ++contaRegDados;
                 } else {

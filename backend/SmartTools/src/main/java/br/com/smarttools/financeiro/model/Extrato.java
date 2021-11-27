@@ -1,6 +1,7 @@
 package br.com.smarttools.financeiro.model;
 
 import br.com.smarttools.oficina.model.Oficina;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,6 +34,9 @@ public class Extrato{
     private String descricao;
     @Column(name = "categoria_extrato")
     private String categoria;
+    @JsonIgnore
+    @Column(length = 50_000_000)
+    private byte[] txt;
 
 
 }
