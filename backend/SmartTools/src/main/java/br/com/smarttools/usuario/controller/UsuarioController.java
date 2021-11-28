@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -19,6 +20,8 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    List<UsuarioAutenticado> listaAutenticados = new ArrayList<>();
 
     //cadastro do usuários
     @PostMapping("/cadastros")
@@ -79,11 +82,21 @@ public class UsuarioController {
         if (usuarioAutenticado.getSenha().equals(usuario.getSenhaUsuario())) {
             UsuarioResposta usuarioResposta = new UsuarioResposta(usuario.getNomeUsuario(),
                     usuario.getEmailUsuario());
+            listaAutenticados.add(usuarioAutenticado);
             return ResponseEntity.status(200).body(usuarioResposta);
         } else {
             return ResponseEntity.status(204).build();
         }
+    }
 
+    @DeleteMapping("/logoff/{email}")
+    public ResponseEntity logoff(@PathVariable String email){
+        if (!usuarioRepository.findByEmailUsuario(email).isEmpty()){
+            UsuarioAutenticado usuarioAutenticado = null;
+            listaAutenticados.remove(usuarioAutenticado.getLogin().equals(email));
+            return ResponseEntity.status(200).build();
+        }
+        return ResponseEntity.status(204).build();
     }
 
 
