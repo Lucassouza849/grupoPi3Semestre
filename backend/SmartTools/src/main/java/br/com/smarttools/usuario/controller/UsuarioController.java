@@ -85,7 +85,7 @@ public class UsuarioController {
         Usuario usuario = usuarioRepository.findByEmailUsuario(usuarioAutenticado.getLogin())
                 .orElseThrow(RuntimeException::new);
         if (usuarioAutenticado.getSenha().equals(usuario.getSenhaUsuario())) {
-            UsuarioResposta usuarioResposta = new UsuarioResposta(usuario.getNomeUsuario(),
+            UsuarioResposta usuarioResposta = new UsuarioResposta(usuario.getId(),usuario.getNomeUsuario(),
                     usuario.getEmailUsuario());
             listaAutenticados.add(usuarioAutenticado);
             return ResponseEntity.status(200).body(usuarioResposta);
