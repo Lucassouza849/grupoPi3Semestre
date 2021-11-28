@@ -23,6 +23,11 @@ public class UsuarioController {
 
     List<UsuarioAutenticado> listaAutenticados = new ArrayList<>();
 
+    @GetMapping("/list")
+    public  ResponseEntity consulta(){
+       return  ResponseEntity.status(200).body(listaAutenticados);
+    }
+
     //cadastro do usuários
     @PostMapping("/cadastros")
     public ResponseEntity criarUsuario(@RequestBody Usuario novoUsuario) {
@@ -89,12 +94,14 @@ public class UsuarioController {
         }
     }
 
-    @DeleteMapping("/logoff/{email}")
-    public ResponseEntity logoff(@PathVariable String email){
-        if (!usuarioRepository.findByEmailUsuario(email).isEmpty()){
-            UsuarioAutenticado usuarioAutenticado = null;
-            listaAutenticados.remove(usuarioAutenticado.getLogin().equals(email));
-            return ResponseEntity.status(200).build();
+    @DeleteMapping("/logoff/{email}/{senha}")
+    public ResponseEntity logoff(@PathVariable String email, @PathVariable String senha){
+        UsuarioAutenticado usuarioAutenticado = null;
+        for (UsuarioAutenticado u : listaAutenticados){
+            if (u.getLogin().equals(email) && u.getSenha().equals(senha)) {
+                listaAutenticados.remove(u);
+                return ResponseEntity.status(200).build();
+            }
         }
         return ResponseEntity.status(204).build();
     }
@@ -105,19 +112,19 @@ public class UsuarioController {
     public ResponseEntity atualizarAvatar(@PathVariable Integer id,
                                           @RequestParam MultipartFile foto) throws IOException {
         if (id != null) {
-                Usuario usuario = usuarioRepository.findById(id).get();
-                byte[] novaFoto = foto.getBytes();
+            Usuario usuario = usuarioRepository.findById(id).get();
+            byte[] novaFoto = foto.getBytes();
 
-                usuario.setFotoPerfil(novaFoto);
-                usuarioRepository.save(usuario);
-                return ResponseEntity.status(200).build();
+            usuario.setFotoPerfil(novaFoto);
+            usuarioRepository.save(usuario);
+            return ResponseEntity.status(200).build();
         }
-                return ResponseEntity.status(204).build();
+        return ResponseEntity.status(204).build();
     }
 
     //Obtendo a imagem do usuario
     @GetMapping("/foto/{id}")
-    public ResponseEntity obtendoImagemUsuario(@PathVariable Integer id){
+    public ResponseEntity obtendoImagemUsuario(@PathVariable Integer id) {
         Usuario usuario = usuarioRepository.findById(id).get();
 
         byte[] foto = usuario.getFotoPerfil();
