@@ -15,6 +15,6 @@ public interface FaturavelRepository extends JpaRepository<Extrato, Integer>{
 //    List<Extrato> findByDate(LocalDateTime date);
 //    Optional<Extrato> findByValor(Double valor);
 
-  @Query("select v from Veiculo v where v.fk_usuario = : id_usuario")
-    public List<Veiculo>listaVeiculo(@Param("id") Integer id);
+//  @Query("select v from Veiculo v where v.fk_usuario = : id_usuario")
+//    public List<Veiculo>listaVeiculo(@Param("id") Integer id);
 }
