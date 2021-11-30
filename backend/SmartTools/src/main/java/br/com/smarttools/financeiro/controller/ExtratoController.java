@@ -140,7 +140,7 @@ public class ExtratoController {
             }
             return ResponseEntity.status(200).build();
         } else {
-            return ResponseEntity.status(204).build();
+            return ResponseEntity.status(404).build();
         }
     }
 }

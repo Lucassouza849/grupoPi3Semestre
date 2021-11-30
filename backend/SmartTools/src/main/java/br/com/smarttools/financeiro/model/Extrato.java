@@ -1,6 +1,7 @@
 package br.com.smarttools.financeiro.model;
 
 import br.com.smarttools.oficina.model.Oficina;
+import br.com.smarttools.usuario.model.Usuario;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,6 +38,7 @@ public class Extrato{
     @JsonIgnore
     @Column(length = 50_000_000)
     private byte[] txt;
+    private Usuario usuario;
 
 
 }
