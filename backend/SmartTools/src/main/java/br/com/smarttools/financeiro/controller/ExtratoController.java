@@ -81,11 +81,10 @@ public class ExtratoController {
     }
 
 
-    @PatchMapping("/upload/{id}")
-    public ResponseEntity patchFoto(@PathVariable Integer id,
-                                    @RequestParam MultipartFile txt) throws IOException {
+    @PostMapping("/upload")
+    public ResponseEntity patchFoto(@RequestParam MultipartFile txt) throws IOException {
 
-        Extrato extrato = faturavelRepository.findById(id).get();
+        Extrato extrato = new Extrato();
 
         byte[] novaArquivo = txt.getBytes();
         long tamanho = txt.getSize();
