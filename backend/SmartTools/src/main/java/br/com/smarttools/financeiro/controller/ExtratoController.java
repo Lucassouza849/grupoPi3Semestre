@@ -36,7 +36,6 @@ public class ExtratoController {
     PilhaObj<Extrato> pilha = new PilhaObj<Extrato>(1000);
     private final long SEGUNDO = 1000;
     private final long MINUTO = SEGUNDO * 60;
-    List<Extrato> listaExtrato = new ArrayList<>();
     int contador = 0;
 
 
@@ -51,10 +50,11 @@ public class ExtratoController {
     public ResponseEntity adicionarDespesa(@RequestBody Despesa novaDespesa){
             novaDespesa.setDataRegistro(OffsetDateTime.now());
             pilha.push(novaDespesa);
+            pilha.exibe();
             return ResponseEntity.status(201).build();
     }
 
-    @Scheduled(cron = "0/5 * * * * *")
+    @Scheduled(cron = "0/30 * * * * *")
     public void adicionaBanco(){
 
         if(pilha.isEmpty()) {
@@ -62,12 +62,24 @@ public class ExtratoController {
         }else{
             while (!pilha.isEmpty()){
                 System.out.println("Esvaziando a pilha....");
-                listaExtrato.add(pilha.pop());
-                faturavelRepository.save(listaExtrato.get(contador));
+                faturavelRepository.save(pilha.pop());
                 contador+= 1;
             }
         }
     }
+
+    @GetMapping("/desfazer")
+    public ResponseEntity desfazer() {
+
+        if(pilha.isEmpty()) {
+            System.out.println("Não há ação para desfazer");
+            return ResponseEntity.status(204).build();
+        } else {
+            return ResponseEntity.status(200).body(pilha.pop());
+        }
+
+    }
+
 
     @GetMapping
     public ResponseEntity todosEntradas(){
