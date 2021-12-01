@@ -3,6 +3,7 @@ package br.com.smarttools.veiculo.controller;
 import br.com.smarttools.cliente.model.Cliente;
 import br.com.smarttools.financeiro.model.Extrato;
 import br.com.smarttools.listaObj.FilaObj;
+import br.com.smarttools.oficina.model.Oficina;
 import br.com.smarttools.veiculo.model.Veiculo;
 import br.com.smarttools.veiculo.repository.VeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin
@@ -25,6 +27,21 @@ public class VeiculoController {
     @GetMapping
     public List<Veiculo> getVeiculos() {
         return veiculoRepository.findAll();
+    }
+
+    @GetMapping("/todos/{id}")
+    public ResponseEntity getVeiculoById(@PathVariable Integer id){
+        List<Veiculo> veiculos = veiculoRepository.findAll();
+        List<Veiculo> veiculoPorUsuario = new ArrayList<>();
+        if (!veiculos.isEmpty()){
+            for (Veiculo veiculo : veiculos){
+                if (veiculo.getUsuario() != null && veiculo.getUsuario().getId().equals(id)){
+                    veiculoPorUsuario.add(veiculo);
+                }
+            }
+            return ResponseEntity.status(200).body(veiculoPorUsuario);
+        }
+        return ResponseEntity.status(204).build();
     }
 
     @GetMapping("buscar-veiculos")

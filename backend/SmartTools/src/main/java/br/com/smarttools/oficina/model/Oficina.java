@@ -21,6 +21,8 @@ public class Oficina {
     private String cnpjOficina;
     @Column(name = "telefone_oficina")
     private String telefoneOficina;
+    @ManyToOne
+    private Usuario usuario;
 
     public Integer getId() {
         return id;
@@ -53,4 +55,8 @@ public class Oficina {
     public void setTelefoneOficina(String telefoneOficina) {
         this.telefoneOficina = telefoneOficina;
     }
+
+    public Usuario getUsuario() {return usuario;}
+
+    public void setUsuario(Usuario usuario) {this.usuario = usuario;}
 }

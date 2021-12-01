@@ -1,6 +1,7 @@
 package br.com.smarttools.veiculo.model;
 
 import br.com.smarttools.cliente.model.Cliente;
+import br.com.smarttools.usuario.model.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -25,9 +26,8 @@ public class Veiculo {
     private String tipoVeiculo;
     @Column(name = "placa_veiculo")
     private String placaVeiculo;
-    @JoinColumn(name = "fk_cliente")
-//    @ManyToOne
-//    private Cliente cliente;
+    @ManyToOne
+    private Usuario usuario;
 
     public Integer getIdVeiculo() {
         return idVeiculo;
@@ -69,7 +69,7 @@ public class Veiculo {
         this.placaVeiculo = placaVeiculo;
     }
 
-//    public Cliente getCliente() {return cliente;}
-//
-//    public void setCliente(Cliente cliente) {this.cliente = cliente;}
+    public Usuario getUsuario() {return usuario;}
+
+    public void setUsuario(Usuario usuario) {this.usuario = usuario;}
 }

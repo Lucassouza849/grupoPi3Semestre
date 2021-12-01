@@ -2,6 +2,7 @@ package br.com.smarttools.cliente.controller;
 
 import br.com.smarttools.cliente.model.Cliente;
 import br.com.smarttools.cliente.repository.ClienteRepository;
+import br.com.smarttools.financeiro.model.Extrato;
 import br.com.smarttools.listaObj.FilaObj;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,14 +24,29 @@ public class ClienteController {
     private ClienteRepository clienteRepository;
     FilaObj<Cliente> fila = new FilaObj<>(1000);
 
-    @GetMapping
-    public List<Cliente> getClientes() {
-        return clienteRepository.findAll();
-    }
+//    @GetMapping
+//    public List<Cliente> getClientes() {
+//        return clienteRepository.findAll();
+//    }
 
-    @GetMapping("/{id}")
-    public Cliente getClienteById(@PathVariable Integer id){
-        return clienteRepository.findById(id).get();
+//    @GetMapping("/{id}")
+//    public Cliente getClienteById(@PathVariable Integer id){
+//        return clienteRepository.findById(id).get();
+//    }
+
+    @GetMapping("/todos/{id}")
+    public ResponseEntity getClienteById(@PathVariable Integer id){
+        List<Cliente> clientes = clienteRepository.findAll();
+        List<Cliente> clientePorUsuario = new ArrayList<>();
+        if (!clientes.isEmpty()){
+            for (Cliente cliente : clientes){
+                if (cliente.getUsuario() != null && cliente.getUsuario().getId().equals(id)){
+                    clientePorUsuario.add(cliente);
+                }
+            }
+            return ResponseEntity.status(200).body(clientePorUsuario);
+        }
+        return ResponseEntity.status(204).build();
     }
 
     @Scheduled(cron = "0/5 * * * * *")

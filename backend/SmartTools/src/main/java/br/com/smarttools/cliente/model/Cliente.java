@@ -1,6 +1,7 @@
 package br.com.smarttools.cliente.model;
 
 import br.com.smarttools.financeiro.model.Extrato;
+import br.com.smarttools.usuario.model.Usuario;
 import br.com.smarttools.veiculo.model.Veiculo;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -23,10 +24,8 @@ public class Cliente {
     private String telefone;
     @Column(name = "email_cliente")
     private String email;
-
     @ManyToOne
-    @JoinColumn(name = "fk_extrato")
-    private Extrato extrato;
+    private Usuario usuario;
 
     public Integer getId() {return id;}
 
@@ -57,11 +56,7 @@ public class Cliente {
         this.email = email;
     }
 
-    public Extrato getExtrato() {
-        return extrato;
-    }
+    public Usuario getUsuario() {return usuario;}
 
-    public void setExtrato(Extrato extrato) {
-        this.extrato = extrato;
-    }
+    public void setUsuario(Usuario usuario) {this.usuario = usuario;}
 }
