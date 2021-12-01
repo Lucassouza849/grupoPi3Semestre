@@ -38,7 +38,7 @@ public class Extrato{
     @JsonIgnore
     @Column(length = 50_000_000)
     private byte[] txt;
-    private Usuario usuario;
+   
 
 
 }
