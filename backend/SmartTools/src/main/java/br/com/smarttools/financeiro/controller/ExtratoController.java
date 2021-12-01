@@ -86,6 +86,21 @@ public class ExtratoController {
 
     }
 
+    @GetMapping("/todos/{id}")
+    public ResponseEntity extratPorId(@PathVariable Integer id){
+        List<Extrato> extratos = faturavelRepository.findAll();
+        List<Extrato> extratosPorUsuario = new ArrayList<>();
+        if (!extratos.isEmpty()){
+            for (Extrato extrato : extratos){
+                if (extrato.getUsuario() != null && extrato.getUsuario().getId().equals(id)){
+                    extratosPorUsuario.add(extrato);
+                }
+            }
+            return ResponseEntity.status(200).body(extratosPorUsuario);
+        }
+        return ResponseEntity.status(204).build();
+    }
+
 
     @GetMapping
     public ResponseEntity todosEntradas(){

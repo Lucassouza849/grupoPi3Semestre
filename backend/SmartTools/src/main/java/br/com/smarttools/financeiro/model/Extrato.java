@@ -36,6 +36,7 @@ public class Extrato{
     @Column(name = "categoria_extrato")
     private String categoria;
 
-
+    @ManyToOne
+    private Usuario usuario;
 
 }
