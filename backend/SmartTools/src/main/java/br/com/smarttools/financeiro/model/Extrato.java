@@ -35,10 +35,7 @@ public class Extrato{
     private String descricao;
     @Column(name = "categoria_extrato")
     private String categoria;
-    @JsonIgnore
-    @Column(length = 50_000_000)
-    private byte[] txt;
-   
+
 
 
 }

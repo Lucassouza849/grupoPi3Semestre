@@ -3,11 +3,13 @@ package br.com.smarttools.financeiro.controller;
 import br.com.smarttools.financeiro.model.Despesa;
 import br.com.smarttools.financeiro.model.Extrato;
 import br.com.smarttools.financeiro.model.Receita;
+import br.com.smarttools.financeiro.model.UploadFile;
 import br.com.smarttools.financeiro.receitasresposta.TotalReceitasResposta;
 import br.com.smarttools.financeiro.repository.FaturavelRepository;
 //import br.com.smarttools.gerararquivo.GravaLeArquivoTxt;
 //import br.com.smarttools.gerararquivo.Gravar;
 
+import br.com.smarttools.financeiro.repository.FileUploadService;
 import br.com.smarttools.gerararquivo.GravaLeArquivoTxt;
 import br.com.smarttools.listaObj.ListaObj;
 import br.com.smarttools.listaObj.PilhaObj;
@@ -33,6 +35,10 @@ public class ExtratoController {
 
     @Autowired
     private FaturavelRepository faturavelRepository;
+
+    @Autowired
+    private FileUploadService fileRepository;
+
     PilhaObj<Extrato> pilha = new PilhaObj<Extrato>(1000);
     private final long SEGUNDO = 1000;
     private final long MINUTO = SEGUNDO * 60;
@@ -96,7 +102,7 @@ public class ExtratoController {
     @PostMapping("/upload")
     public ResponseEntity patchFoto(@RequestParam MultipartFile txt) throws IOException {
 
-        Extrato extrato = new Extrato();
+        UploadFile uploadFile = new UploadFile();
 
         byte[] novaArquivo = txt.getBytes();
         long tamanho = txt.getSize();
@@ -105,12 +111,26 @@ public class ExtratoController {
 
         String nomeOriginal = txt.getOriginalFilename();
 
-        extrato.setTxt(novaArquivo);
+        uploadFile.setTxt(novaArquivo);
 
-        faturavelRepository.save(extrato);
+        fileRepository.save(uploadFile);
 
         return ResponseEntity.status(200).build();
     }
+
+    @GetMapping("/upload")
+    public ResponseEntity getAllFilesFromCloud() {
+
+        List<UploadFile> uploadFiles = fileRepository.findAll();
+
+        if (uploadFiles.isEmpty()) {
+            return ResponseEntity.status(204).build();
+        } else {
+            return ResponseEntity.status(200).body(uploadFiles);
+        }
+
+    }
+
 
     @GetMapping("/txt")
     public ResponseEntity getTxt(){
@@ -120,7 +140,7 @@ public class ExtratoController {
 
         grava.gravaArquivoTxt(faturavelRepository.findAll(),"extrato.txt");
 
-        return ResponseEntity.status(201).build();
+        return ResponseEntity.status(200).build();
     }
 
     @PostMapping("adicionar-transacao/")
