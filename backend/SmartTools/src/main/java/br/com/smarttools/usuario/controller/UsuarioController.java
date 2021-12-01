@@ -61,7 +61,7 @@ public class UsuarioController {
             usuarioRepository.deleteById(id);
             return ResponseEntity.status(200).build();
         } else {
-            return ResponseEntity.status(400).build();
+            return ResponseEntity.status(404).build();
         }
     }
 
