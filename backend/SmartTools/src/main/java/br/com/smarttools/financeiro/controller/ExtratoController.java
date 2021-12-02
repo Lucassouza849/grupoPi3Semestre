@@ -14,12 +14,19 @@ import br.com.smarttools.gerararquivo.GravaLeArquivoTxt;
 import br.com.smarttools.listaObj.ListaObj;
 import br.com.smarttools.listaObj.PilhaObj;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
@@ -46,29 +53,29 @@ public class ExtratoController {
 
 
     @PostMapping("/receitas")
-    public ResponseEntity adicionarReceita(@RequestBody Receita novaReceita){
-            novaReceita.setDataRegistro(OffsetDateTime.now());
-            pilha.push(novaReceita);
-            return ResponseEntity.status(201).build();
+    public ResponseEntity adicionarReceita(@RequestBody Receita novaReceita) {
+        novaReceita.setDataRegistro(OffsetDateTime.now());
+        pilha.push(novaReceita);
+        return ResponseEntity.status(201).build();
     }
 
     @PostMapping("/despesas")
-    public ResponseEntity adicionarDespesa(@RequestBody Despesa novaDespesa){
-            novaDespesa.setDataRegistro(OffsetDateTime.now());
-            pilha.push(novaDespesa);
-            return ResponseEntity.status(201).build();
+    public ResponseEntity adicionarDespesa(@RequestBody Despesa novaDespesa) {
+        novaDespesa.setDataRegistro(OffsetDateTime.now());
+        pilha.push(novaDespesa);
+        return ResponseEntity.status(201).build();
     }
 
     @Scheduled(cron = "0/30 * * * * *")
-    public void adicionaBanco(){
+    public void adicionaBanco() {
 
-        if(pilha.isEmpty()) {
+        if (pilha.isEmpty()) {
             System.out.println("Pilha vazia");
-        }else{
-            while (!pilha.isEmpty()){
+        } else {
+            while (!pilha.isEmpty()) {
                 System.out.println("Esvaziando a pilha....");
                 faturavelRepository.save(pilha.pop());
-                contador+= 1;
+                contador += 1;
             }
         }
     }
@@ -76,7 +83,7 @@ public class ExtratoController {
     @GetMapping("/desfazer")
     public ResponseEntity desfazer() {
 
-        if(pilha.isEmpty()) {
+        if (pilha.isEmpty()) {
             System.out.println("Não há ação para desfazer");
             return ResponseEntity.status(204).build();
         } else {
@@ -86,12 +93,12 @@ public class ExtratoController {
     }
 
     @GetMapping("/todos/{id}")
-    public ResponseEntity extratPorId(@PathVariable Integer id){
+    public ResponseEntity extratPorId(@PathVariable Integer id) {
         List<Extrato> extratos = faturavelRepository.findAll();
         List<Extrato> extratosPorUsuario = new ArrayList<>();
-        if (!extratos.isEmpty()){
-            for (Extrato extrato : extratos){
-                if (extrato.getUsuario() != null && extrato.getUsuario().getId().equals(id)){
+        if (!extratos.isEmpty()) {
+            for (Extrato extrato : extratos) {
+                if (extrato.getUsuario() != null && extrato.getUsuario().getId().equals(id)) {
                     extratosPorUsuario.add(extrato);
                 }
             }
@@ -102,7 +109,7 @@ public class ExtratoController {
 
 
     @GetMapping
-    public ResponseEntity todosEntradas(){
+    public ResponseEntity todosEntradas() {
 
         List<Extrato> extrato = faturavelRepository.findAll();
         if (extrato.isEmpty()) {
@@ -148,9 +155,16 @@ public class ExtratoController {
 
     @GetMapping("/txt/{id}")
     public ResponseEntity getTxt(@PathVariable Integer id) {
+
         List<Extrato> extratos = faturavelRepository.findAll();
         List<Extrato> lista = new ArrayList<>();
-        if (!extratos.isEmpty()) {
+        if (extratos.isEmpty()) {
+
+            return ResponseEntity.status(402).build();
+        }
+
+
+        try {
             for (Extrato extrato : extratos) {
                 if (extrato.getUsuario() != null && extrato.getUsuario().getId().equals(id)) {
                     lista.add(extrato);
@@ -158,17 +172,41 @@ public class ExtratoController {
             }
             GravaLeArquivoTxt grava = new GravaLeArquivoTxt();
 
-            grava.gravaArquivoTxt(lista, "extrato.txt");
+            String nomeArquivo = "extrato.txt";
 
-            return ResponseEntity.status(200).build();
+            grava.gravaArquivoTxt(lista, nomeArquivo);
+
+            File file = new File(nomeArquivo);
+            Path path = Paths.get(file.getAbsolutePath());
+            ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
+            HttpHeaders header = new HttpHeaders();
+
+            System.out.println(path);
+
+            header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + nomeArquivo);
+            header.add("Cache-Control", "no-cache, no-store,must-revalidate");
+            header.add("Pragma", "no-cache");
+            header.add("Expires", "0");
+
+            return ResponseEntity
+                    .ok()
+                    .contentLength(file.length())
+                    .headers(header)
+                    .contentType(MediaType.parseMediaType("application/octet-stream"))
+                    .body(resource);
+        } catch (IOException e) {
+
+            e.printStackTrace();
+            return ResponseEntity.notFound().build();
+            
         }
-        return ResponseEntity.status(204).build();
     }
+
 
     @PostMapping("adicionar-transacao/")
     public ResponseEntity<Extrato> postExtrato() {
 
-        for(int i = 0; i < faturavelRepository.count(); i++) {
+        for (int i = 0; i < faturavelRepository.count(); i++) {
             pilha.push(faturavelRepository.getById(i));
         }
 
@@ -178,15 +216,15 @@ public class ExtratoController {
     @DeleteMapping("{id}")
     public ResponseEntity deleteWithDescription(@PathVariable Integer id) {
 
-    List<Extrato> extrato = faturavelRepository.findAll();
-    Iterator<Extrato> it = extrato.iterator();
-    System.out.println("TAMANHO =" + extrato.size());
-    Extrato ext = new Extrato();
+        List<Extrato> extrato = faturavelRepository.findAll();
+        Iterator<Extrato> it = extrato.iterator();
+        System.out.println("TAMANHO =" + extrato.size());
+        Extrato ext = new Extrato();
         if (faturavelRepository.existsById(id)) {
             while (it.hasNext()) {
                 ext = (Extrato) it.next();
 
-                if(ext.getId().equals(id)) {
+                if (ext.getId().equals(id)) {
                     it.remove();
                     faturavelRepository.deleteById(id);
                 }
