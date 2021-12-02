@@ -56,7 +56,6 @@ public class ExtratoController {
     public ResponseEntity adicionarDespesa(@RequestBody Despesa novaDespesa){
             novaDespesa.setDataRegistro(OffsetDateTime.now());
             pilha.push(novaDespesa);
-            pilha.exibe();
             return ResponseEntity.status(201).build();
     }
 
@@ -147,15 +146,23 @@ public class ExtratoController {
     }
 
 
-    @GetMapping("/txt")
-    public ResponseEntity getTxt(){
+    @GetMapping("/txt/{id}")
+    public ResponseEntity getTxt(@PathVariable Integer id) {
+        List<Extrato> extratos = faturavelRepository.findAll();
         List<Extrato> lista = new ArrayList<>();
+        if (!extratos.isEmpty()) {
+            for (Extrato extrato : extratos) {
+                if (extrato.getUsuario() != null && extrato.getUsuario().getId().equals(id)) {
+                    lista.add(extrato);
+                }
+            }
+            GravaLeArquivoTxt grava = new GravaLeArquivoTxt();
 
-        GravaLeArquivoTxt grava = new GravaLeArquivoTxt();
+            grava.gravaArquivoTxt(lista, "extrato.txt");
 
-        grava.gravaArquivoTxt(faturavelRepository.findAll(),"extrato.txt");
-
-        return ResponseEntity.status(200).build();
+            return ResponseEntity.status(200).build();
+        }
+        return ResponseEntity.status(204).build();
     }
 
     @PostMapping("adicionar-transacao/")
